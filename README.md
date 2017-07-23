@@ -44,7 +44,7 @@ Take a look below to see what is provided.
 - Utility classes.
 - A set of useful mixins for controlling anchors, positioning, media queries, placeholders and more.
 
-**Got a CSS/SASS request? Please open an issue and be as specific as possible with the behavior, requirements etc. **
+**Got a CSS/SASS request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Components (`@components/*`)
 - `BreadcrumbsComponent`/`<breadcrumbs></breadcrumbs>`, provides a breadcrumbs trail depending on the current url. Exposes `BreadcrumbsUtils` which allows for great control over these breadcrumbs.
@@ -65,7 +65,7 @@ Take a look below to see what is provided.
 
 A lot of these components have additional APIs, directives, pipes etc. which can be used. Check the `shared` folder in each component to see what can be used. I will try to add a `README.md` file for each with documentation on how to use it.
 
-**Got a component request? Please open an issue and be as specific as possible with the behavior, requirements etc. **
+**Got a component request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Services (`@services/*`)
 - `HttpWrapper`, wraps Angular's `Http` and allows you to add headers, params and data for each request that is made from your app.
@@ -75,7 +75,7 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 - `StorageLogger`, when storing data via this service it will also expose an `Observable` which you can subscribe to in order to react to changes to `localStorage` or cookies.
 - `Utils`, a static service which exposes a set of useful functions such as `findObjectIndex`, `findObjectByQuery` and `getUniqueID` and more.
 
-**Got a service request? Please open an issue and be as specific as possible with the behavior, requirements etc. **
+**Got a service request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Pipes (`@pipes/*`)
 - `CapitalizePipe`/`capitalize`, the first letter of the value (not each word)
@@ -84,7 +84,7 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 - `SortStringsPipe`/`sortStrings`, sort strings
 - `FilterByPipe`/`filterBy`, filter by query
 
-**Got a pipe request? Please open an issue and be as specific as possible with the behavior, requirements etc. **
+**Got a pipe request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Directives (`@directives/*`)
 - `WindowHeightDirective`/`windowHeight`, gets the window height and continously applies it to the host element every time the window resizes (with a debounce function so it's efficient).
@@ -95,7 +95,7 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 - `SelectItem`/`selectItem`, is applied to the `CheckboxComponent` (`<checkbox selectItem></checkbox>`). It will listen for changes to `ngModel` and add or remove it to a list of `selected` items.
 - `SelectAll`/`selectAll`, is applied to any clickable element and takes an `items` list as an input and toggles a specific property in each item depending on if one or more of them is `false` and vice versa. Combine with `SelectItem` if you have a list of items which each has a checkbox, for example. 
 
-**Got a directive request? Please open an issue and be as specific as possible with the behavior, requirements etc. **
+**Got a directive request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Interfaces (`@interfaces/*`)
 
