@@ -1,4 +1,5 @@
 # ng-boilerplate
+The best and only boilerplate you will ever need.
 
 # Focus on the things that truly matters
 Are you tired of installing boilerplates that are cluttered with stuff that doesn't make sense or that you will never need? 
