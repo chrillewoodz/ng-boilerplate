@@ -24,7 +24,6 @@
       "@directives/*": ["app/shared/directives/*"],
       "@guards/*": ["app/shared/guards/*"],
       "@interfaces/*": ["app/shared/interfaces/*"],
-      "@lists/*": ["app/shared/lists/*"],
       "@modules/*": ["app/shared/modules/*"],
       "@pipes/*": ["app/shared/pipes/*"],
       "@services/*": ["app/shared/services/*"],

@@ -1,19 +1,19 @@
-$primary: #009688;
+$primary: #00ABEB;
 $primary-light: lighten($primary, 5%);
 $primary-dark: darken($primary, 5%);
 $primary-complement: #fff;
 
-$complement: #00ABEB;
+$complement: #009688;
 $complement-light: lighten($complement, 10%);
 $complement-dark: darken($complement, 5%);
 
 $success: #1CCC71;
-$success-light: '';
+$success-light: lighten($success, 5%);
 $success-dark: darken($success, 5%);
 
-$warning: '';
-$warning-light: '';
-$warning-dark: '';
+$warning: #ffc700;
+$warning-light: lighten($warning, 5%);
+$warning-dark: darken($warning, 5%);
 
 $danger: #D32323;
 $danger-light: '';
@@ -29,8 +29,6 @@ $special-light: lighten($special, 5%);
 $special-dark: darken($special, 10%);
 
 $facebook: #3B5998;
-$facebook-light: '';
-$facebook-dark: '';
 
 $text-primary: #555459;
 $text-complement: #929292;
@@ -74,9 +72,7 @@ $colors: (
     dark: $special-dark
   ),
   facebook: (
-    base: $facebook,
-    light: $facebook-light,
-    dark: $facebook-dark
+    base: $facebook
   ),
   text: (
     base: $text-primary,

@@ -13,7 +13,7 @@ import {HttpWrapper} from '@services/http-wrapper.service';
 
 export class Api {
 
-  constructor(private http: HttpWrapper, private router: Router, private typeParser: TypeParser) {}
+  constructor(private http: HttpWrapper, private router: Router) {}
 
   private errorCallback(err: any, caught: Observable<any>): Observable<any> {
 

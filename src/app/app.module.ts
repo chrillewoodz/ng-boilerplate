@@ -1,4 +1,3 @@
-// Angular
 import {NgModule} from '@angular/core';
 import {Http} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';

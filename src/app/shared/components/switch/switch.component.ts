@@ -1,4 +1,3 @@
-// Angular
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
