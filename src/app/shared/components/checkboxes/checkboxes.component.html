@@ -1,0 +1,9 @@
+<div class="checkboxes-control">
+  <ul>
+    <li *ngFor="let option of options">
+      <checkbox [(ngModel)]="option.isChecked" [ngModelOptions]="{standalone: true}" (ngModelChange)="selectOption(option)">
+        <ng-template [ngTemplateOutlet]="templateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+      </checkbox>
+    </li>
+  </ul>
+</div>

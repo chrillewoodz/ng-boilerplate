@@ -1,0 +1,9 @@
+<div class="switch-container">
+  <label class="switch-label label" [for]="id">
+    <ng-content></ng-content>
+  </label>
+  <label class="switch">
+    <input class="checkbox" type="checkbox" [id]="id" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [disabled]="disabled">
+    <div class="slider"></div>
+  </label>
+</div>

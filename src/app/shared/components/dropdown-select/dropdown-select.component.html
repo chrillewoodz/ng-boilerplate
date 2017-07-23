@@ -1,0 +1,18 @@
+<div class="dropdown-wrapper" [ngClass]="{open: isOpen, disabled: isDisabled}" (outsideClick)="close()" [exceptions]="[toggler]">
+  <header class="dropdown-header">
+		<button #toggler class="btn btn-sm btn-neutral dropdown-toggle" type="button" (click)="toggle()">
+      <!--{{model ? model[optionsLabel] : placeholder}}-->
+      <ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: model}"></ng-template>
+      <span class="dropdown-icon" *ngIf="isToggleIconVisible"><i class="fa fa-angle-{{isOpen ? 'up' : 'down'}}"></i></span></button>
+     <!--<div #target class="dropdown-content-target">
+      <ng-content select="[header]"></ng-content>
+    </div> -->
+	</header>
+	<ul class="dropdown-menu">
+    <ng-container *ngFor="let option of options">
+      <li class="dropdown-menu-item" *ngIf="option[uniqueKey] !== (model || {})[uniqueKey]" (click)="select(option)">
+        <ng-template [ngTemplateOutlet]="optionRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+      </li>
+    </ng-container>
+	</ul>
+</div>

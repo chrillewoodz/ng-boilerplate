@@ -1,0 +1,23 @@
+<div #select class="select-control" [ngClass]="{open: isOpen, disabled: disabled, 'ng-dirty': isDirty}" isTouched click-outside (outsideClick)="close()" [exceptions]="[exception]">
+  <div #exception>
+    <label class="label select-label" [for]="selectId">{{label}}</label>
+    <input class="input select-selected-option" [id]="selectId" [ngModel]="model ? model[optionsLabel] : ''" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
+    <ng-template [ngTemplateOutlet]="modelTemplateRef" [ngOutletContext]="{$implicit: model}"></ng-template>
+  </div>
+  <ul class="select-options">
+    <ng-container *ngFor="let option of options">
+      <ng-container *ngIf="!isSelected(option)">
+        <li class="label select-option" (click)="selectOption(option)" [ngClass]="{marked: option.isMarked}">
+          <span class="text-bold" *ngIf="!isCustomOptionTemplate">{{option[optionsLabel]}}</span>
+          <ng-template *ngIf="isCustomOptionTemplate" [ngTemplateOutlet]="optionTemplateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+        </li>
+      </ng-container>
+    </ng-container>
+  </ul>
+  <span class="select-clear-icon" *ngIf="model" (click)="clearModel()">
+    <i class="fa fa-times"></i>
+  </span>
+  <span class="select-toggle-icon" (click)="toggle()">
+    <i class="fa fa-angle-{{isOpen ? 'up' : 'down'}}"></i>
+  </span>
+</div>

@@ -1,0 +1,34 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
+    "paths": {
+      "@animations/*": ["app/shared/animations/*"],
+      "@components/*": ["app/shared/components/*"],
+      "@config/*": ["app/shared/config/*"],
+      "@constants/*": ["app/shared/constants/*"],
+      "@directives/*": ["app/shared/directives/*"],
+      "@guards/*": ["app/shared/guards/*"],
+      "@interfaces/*": ["app/shared/interfaces/*"],
+      "@lists/*": ["app/shared/lists/*"],
+      "@modules/*": ["app/shared/modules/*"],
+      "@pipes/*": ["app/shared/pipes/*"],
+      "@services/*": ["app/shared/services/*"],
+      "@validators/*": ["app/shared/validators/*"]
+    }
+  }
+}

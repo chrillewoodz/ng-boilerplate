@@ -1,0 +1,8 @@
+@import './src/assets/styles/utils/_exports';
+
+:host {
+
+  @include respond-from(xs) {
+    display: none;
+  }
+}

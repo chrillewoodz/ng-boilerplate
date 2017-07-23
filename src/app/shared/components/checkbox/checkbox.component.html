@@ -1,0 +1,9 @@
+<div class="checkbox-wrapper" [ngClass]="{disabled: disabled}">
+  <label [attr.for]="id" class="checkbox-label checkbox-{{theme}} checkbox-label-{{size}}" [ngClass]="{checked: model, disabled: disabled, 'float-left': float === 'left', 'float-right': float === 'right'}">
+    <span class="label checkbox-label-text">
+      <ng-content></ng-content>
+    </span>
+    <input type="checkbox" class="checkbox" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [id]="id" [disabled]="disabled" (change)="callback.emit(model)">
+    <div class="checkbox-indicator"></div>
+  </label>
+</div>

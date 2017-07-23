@@ -1,0 +1,229 @@
+@import './_breakpoints';
+
+@mixin anchors($color, $hover-color, $transition: true, $deep: true) {
+
+  @if ($deep) {
+
+    /deep/ &,
+    /deep/ a {
+      color: $color;
+      text-decoration: none;
+
+      &:link,
+      &:visited,
+      &:focus,
+      &:active {
+        color: $color;
+        text-decoration: none;
+      }
+
+      &:hover {
+        color: $hover-color;
+        text-decoration: none;
+      }
+
+      @if ($transition) {
+
+        & {
+          transition: color 150ms ease-in-out;
+        }
+      }
+    }
+  }
+  @else {
+
+    &,
+    a {
+      color: $color;
+      text-decoration: none;
+
+      &:link,
+      &:visited,
+      &:focus,
+      &:active {
+        color: $color;
+        text-decoration: none;
+      }
+
+      &:hover {
+        color: $hover-color;
+        text-decoration: none;
+      }
+
+      @if ($transition) {
+
+        & {
+          transition: color 150ms ease-in-out;
+        }
+      }
+    }
+  }
+}
+
+@mixin center-text-y($height) {
+  height: $height;
+  line-height: $height;
+}
+
+@mixin placeholder-color($color) {
+
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+
+  &:-moz-placeholder {
+    color: $color;
+    opacity:  1;
+  }
+
+  &::-moz-placeholder {
+    color: $color;
+    opacity:  1;
+  }
+
+  &-ms-input-placeholder {
+    color: $color;
+  }
+}
+
+@mixin placeholder-styles() {
+
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &-ms-input-placeholder {
+    @content;
+  }
+}
+
+@mixin pos($top: null, $right: null, $bottom: null, $left: null, $pos: absolute) {
+  position: $pos;
+
+  @if ($top) {
+    top: $top;
+  }
+
+  @if ($right) {
+    right: $right;
+  }
+
+  @if ($bottom) {
+    bottom: $bottom;
+  }
+
+  @if ($left) {
+    left: $left;
+  }
+}
+
+@mixin pos-x($x: 50%, $pos: absolute) {
+  position: $pos;
+  left: $x;
+  transform: translateX(-$x);
+}
+
+@mixin pos-y($y: 50%, $pos: absolute) {
+  position: $pos;
+  top: $y;
+  transform: translateY(-$y);
+}
+
+@mixin pos-xy($x: 50%, $y: 50%, $pos: absolute) {
+  position: $pos;
+  top: $y;
+  left: $x;
+  transform: translate(-$x, -$y);
+}
+
+@mixin respond-from($breakpoint) {
+
+  $breakpoint: map-get($breakpoints, $breakpoint);
+
+  @media screen and (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+
+  $breakpoint: map-get($breakpoints, $breakpoint);
+
+  @media screen and (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin respond-between($breakpointMin, $breakpointMax) {
+
+  $breakpointMin: map-get($breakpoints, $breakpointMin);
+  $breakpointMax: map-get($breakpoints, $breakpointMax);
+
+  @media screen and (min-width: $breakpointMin) and (max-width: $breakpointMax) {
+    @content;
+  }
+}
+
+@mixin clearfix() {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin border() {
+  border: 1px solid $border-color;
+}
+
+
+// Strip value from its unit
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
+
+// Mixin for rems <3
+@mixin rem-fallback($property, $values...) {
+  $max: length($values);
+  $pxValues: '';
+  $remValues: '';
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $pxValues: #{$pxValues + $value*16}px;
+
+    @if $i < $max {
+      $pxValues: #{$pxValues + " "};
+    }
+  }
+
+  @for $i from 1 through $max {
+    $value: strip-unit(nth($values, $i));
+    $remValues: #{$remValues + $value}rem;
+
+    @if $i < $max {
+      $remValues: #{$remValues + " "};
+    }
+  }
+
+  #{$property}: $pxValues;
+  #{$property}: $remValues;
+}
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+  @return #{$remSize}rem;
+}
+
+@mixin fontSize($size) {
+  font-size: $size; //Fallback in px
+  font-size: calculateRem($size);
+}

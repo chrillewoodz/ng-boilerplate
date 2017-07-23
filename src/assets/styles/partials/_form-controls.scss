@@ -1,0 +1,44 @@
+.form-control {
+  position: relative;
+  padding: 10px 0 0;
+  background-color: white;
+  text-align: left;
+
+  &.error {
+
+    .input,
+    .textarea {
+      border-bottom-color: palette('danger') !important;
+    }
+  }
+}
+
+.checkbox-control {
+  position: relative;
+  padding: 10px 15px;
+  border-bottom: 1px solid palette('neutral', 'light');
+}
+
+.switch-control {
+  position: relative;
+  padding: 10px 15px 10px 0;
+  border-bottom: 1px solid palette('neutral', 'light');
+}
+
+.slider-control {
+  position: relative;
+  padding: 10px 15px;
+  border-bottom: 1px solid palette('neutral', 'light');
+}
+
+.form-control-icon {
+  @include pos-y();
+  left: 13px;
+  margin-top: 2px;
+  color: palette('neutral', 'dark');
+  font-size: 1.2rem;
+
+  + .input {
+    padding-left: 40px;
+  }
+}

@@ -1,0 +1,8 @@
+<div class="breadcrumbs-wrapper">
+  <ul class="breadcrumbs-list">
+    <li class="breadcrumbs-list-item" [ngClass]="{'current': last}" *ngFor="let url of urls; let last = last">
+      <a class="breadcrumbs-list-item-link" role="button" *ngIf="!last" (click)="navigateTo(url)" translate>{{friendlyName(url) | capitalize}}</a>
+      <span *ngIf="last" translate>{{friendlyName(url) | capitalize}}</span>
+    </li>
+  </ul>
+</div>

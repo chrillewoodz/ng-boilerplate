@@ -1,0 +1,64 @@
+@import './src/assets/styles/utils/_exports';
+
+.notifications-wrapper {
+  @include pos(0, $left: 0, $pos: fixed);
+  width: 100%;
+  z-index: 998;
+  transform: translate3d(0, -40px, 0);
+  transition: transform 450ms ease;
+
+  &.active {
+    transform: translate3d(0, 50px, 0);
+  }
+
+  &.sticky-top {
+    transform: translate3d(0, 0, 0);
+  }
+
+  &.theme-primary {
+    @include anchors(#fff, #fff, false, false);
+    background-color: palette('neutral', 'light');
+
+    .notification-text {
+      color: palette('primary');
+    }
+  }
+
+  &.theme-complement {
+    @include anchors(#fff, #fff, false, false);
+    background-color: palette('complement');
+
+    .notification-text {
+      color: #fff;
+    }
+  }
+
+  &.theme-success {
+    @include anchors(#fff, #fff, false, false);
+    background-color: palette('success');
+
+    .notification-text {
+      color: #fff;
+    }
+  }
+
+  &.theme-danger {
+    @include anchors(#fff, #fff, false, false);
+    background-color: palette('danger');
+    
+    .notification-text {
+      color: #fff;
+    }
+  }
+}
+
+.notifications-anchor {
+  display: block;
+}
+
+.notification {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+}

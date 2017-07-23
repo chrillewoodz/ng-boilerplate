@@ -1,0 +1,25 @@
+@function map-deep-get($map, $keys...) {
+
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@function map-get-z($map, $keys...) {
+
+	@each $key in $keys {
+		@if type-of($map) != 'map' {
+			@return $map;
+		}
+
+		$map: map-get($map, $key);
+	}
+
+  @return $map;
+}
+
+@function palette($tone: 'primary', $variant: 'base') {
+  @return map-deep-get($colors, $tone, $variant);
+}

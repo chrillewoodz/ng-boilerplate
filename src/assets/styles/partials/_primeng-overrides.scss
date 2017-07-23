@@ -1,0 +1,146 @@
+p-slider {
+
+  .ui-slider {
+    border-radius: 7px;
+    box-shadow: none;
+    background-color: palette('neutral', 'light');
+
+    &.ui-slider-horizontal {
+      height: 14px;
+    }
+
+    .ui-slider-handle {
+      @include pos-y();
+      top: 50% !important;
+      width: 24px !important;
+      height: 24px !important;
+      border-radius: 50%;
+      background: none;
+      background-color: palette('primary');
+      cursor: pointer;
+    }
+  }
+}
+
+p-paginator {
+
+  .ui-widget-header {
+    background: none;
+    border: none;
+  }
+
+  /deep/ .ui-paginator-element.ui-paginator-first,
+  /deep/ .ui-paginator-element.ui-paginator-last,
+  /deep/ .ui-paginator-element.ui-paginator-prev,
+  /deep/ .ui-paginator-element.ui-paginator-next {
+    display: none;
+  }
+
+  /deep/ .ui-paginator {
+    margin-top: 10px;
+    padding: 10px 0 0;
+    border-top: 1px solid palette('neutral', 'light');
+
+    .ui-paginator-element,
+    .ui-paginator-element a {
+      transition: color 150ms ease-in-out, background-color 150ms ease-in-out;
+    }
+
+    .ui-paginator-element:link,
+    .ui-paginator-element:visited,
+    .ui-paginator-element:focus,
+    .ui-paginator-element:active,
+    .ui-paginator-element a:link,
+    .ui-paginator-element a:visited,
+    .ui-paginator-element a:focus,
+    .ui-paginator-element a:active {
+      width: 2rem;
+      height: 2rem;
+      margin: 0 4px;
+      padding: 0;
+      line-height: 2rem;
+      text-align: center;
+      border-radius: 50%;
+      border: none;
+      background-color: palette('primary', 'light');
+      color: white;
+    }
+
+    .ui-paginator-element.ui-state-active:link,
+    .ui-paginator-element.ui-state-active:visited,
+    .ui-paginator-element.ui-state-active:focus,
+    .ui-paginator-element.ui-state-active:active,
+    .ui-paginator-element.ui-state-active:hover,
+    .ui-paginator-element.ui-state-active a:link,
+    .ui-paginator-element.ui-state-active a:visited,
+    .ui-paginator-element.ui-state-active a:focus,
+    .ui-paginator-element.ui-state-active a:active {
+      color: white;
+      background-color: palette('primary', 'dark') !important;
+      font-weight: 700;
+    }
+
+    .ui-paginator-element:hover,
+    .ui-paginator-element a:hover {
+      color: white !important;
+      background-color: palette('primary') !important;
+    }
+  }
+}
+
+p-calendar {
+
+  span {
+    color: #fff;
+    font-weight: 300;
+  }
+
+  .ui-calendar {
+    display: block;
+
+    .ui-widget-header,
+    .ui-widget-content {
+      border: 0;
+    }
+
+    .ui-datepicker {
+      width: 100%;
+      margin-top: 2px;
+
+      &-header {
+        background: palette('primary', 'dark');
+
+        a {
+          
+          &:hover {
+            background: transparent;
+          }
+        }
+      }
+
+      .ui-datepicker-calendar {
+
+        thead {
+
+          th {
+            background-color: palette('primary');
+
+            span {
+              color: #fff;
+            }
+          }
+        }
+      }
+
+      .ui-state-active {
+        background-color: palette('primary') !important;
+      }
+    }
+
+    .ui-inputtext {
+      @extend .input;
+      padding-left: 0;
+      cursor: pointer;
+    }
+  }
+}

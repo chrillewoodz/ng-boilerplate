@@ -1,0 +1,46 @@
+.label {
+  padding-left: 15px;
+  padding-right: 15px;
+  color: palette('text', 'base');
+}
+
+.slider-label {
+  @extend .label;
+  display: inline-block;
+  padding: 0 0 10px;
+}
+
+.input,
+.textarea {
+  @include placeholder-color(palette('neutral', 'dark'));
+  width: 100%;
+  padding: 6px 15px 10px;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid palette('neutral', 'light');
+  box-shadow: none !important;
+  color: palette('text', 'base');
+  transition: border-bottom-color 150ms ease;
+
+  &:hover {
+    border-color: palette('neutral', 'light') !important;
+  }
+
+  &:focus {
+    outline: 0;
+    border-bottom-color: palette('primary') !important;
+  }
+
+  &:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+}
+
+.textarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.textview {
+  height: 200px;
+}

@@ -1,0 +1,132 @@
+@import './src/assets/styles/utils/_exports';
+
+.select-control {
+  position: relative;
+  cursor: pointer;
+
+  &.open {
+
+    .select-selected-option {
+      border-color: palette('primary');
+    }
+
+    .select-options {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &.disabled {
+
+    &.required {
+
+      &:after {
+        content: none;
+      }
+    }
+
+    &:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: inherit;
+			content: '';
+			z-index: 2;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+  }
+
+  &.required {
+
+    &:after {
+      position: absolute;
+      top: 7px;
+      right: 15px;
+      content: '*';
+      color: red;
+      font-size: 18px;
+    }
+  }
+}
+
+.select-selected-option {
+  width: 100%;
+  min-height: 35px;
+  border-bottom: 1px solid palette('neutral', 'light');
+  transition: background-color 150ms ease-in-out, border-color 150ms ease;
+  cursor: pointer;
+}
+
+.select {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.select-options {
+  @include pos(100%, $left: 0);
+  width: 100%;
+  max-height: 300px;
+  margin: 1px 0 0;
+  padding: 10px;
+  border-radius: 0 0 3px 3px;
+  border: 1px solid #eaeaea;
+  border-top: 0;
+  background-color: #fff;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 4999;
+  overflow-y: auto;
+  transition: opacity 200ms ease;
+
+  .select-option {
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.select-option {
+  width: inherit;
+  margin-bottom: 6px;
+  padding: 15px;
+  border-radius: 2px;
+  background-color: palette('neutral', 'light');
+  color: #000;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+
+  &:hover,
+  &.marked {
+    background-color: palette('neutral', 'dark');
+  }
+
+  &.selected {
+    display: none;
+  }
+}
+
+.select-label {
+  cursor: pointer;
+}
+
+.select-toggle-icon {
+  @include pos-y();
+  right: 15px;
+  font-size: 1.5em;
+}
+
+.select-clear-icon {
+  @include pos-y();
+  right: 37px;
+  margin-top: -1px;
+  font-size: 1.2em;
+  transition: color 150ms ease;
+
+  &:hover {
+    color: palette('danger');
+  }
+}

@@ -1,0 +1,19 @@
+.bg-neutral {
+  background-color: palette('neutral');
+
+  &-light {
+    background-color: palette('neutral', 'light');
+  }
+
+  &-lighter {
+    background-color: palette('neutral', 'lighter');
+  }
+
+  &-dark {
+    background-color: palette('neutral', 'dark');
+  }
+}
+
+.bg-light {
+  background-color: white;
+}

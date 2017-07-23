@@ -1,0 +1,31 @@
+<!-- TODO: Close on blur -->
+<div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}">
+	<label class="label select-label" [for]="selectId">{{label}}</label>
+	<div>
+		<input class="input" [id]="selectId" (focus)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
+		<ng-template [ngTemplateOutlet]="modelTemplateRef" [ngOutletContext]="{$implicit: model}"></ng-template>
+	</div>
+	<div class="sm-selected-options" [ngClass]="{populated: model?.length}" (click)="toggle()">
+		<ul class="sm-selected-options-list">
+			<li class="sm-selected-options-list-item" *ngFor="let item of model | slice:0:[labelsCap]; let last = last">{{item[optionsLabel]}}<span *ngIf="!last">,</span></li>
+			<li *ngIf="model?.length > labelsCap" class="sm-selected-options-additional"> and {{model?.length - labelsCap}} more</li>
+		</ul>
+	</div>
+	<div class="sm-options" [ngClass]="{visible: isOpen}">
+		<ul class="sm-options-list">
+			<li class="sm-option-static">
+				<search-input (search)="queryFn.emit($event)" [placeholder]="queryPlaceholder"></search-input>
+				<button class="btn btn-sm btn-complement sm-check-all-btn" type="button" (click)="selectAll()">Select all</button> 
+			</li>
+			<li class="sm-option" *ngFor="let option of options; trackBy:trackByFn">
+				<checkbox [(ngModel)]="option.isChecked" (ngModelChange)="selectOption(option)" [ngModelOptions]="{standalone: true}" float="right">
+					<span *ngIf="!isCustomOptionTemplate">{{option[optionsLabel]}}</span>
+					<ng-template *ngIf="isCustomOptionTemplate" [ngTemplateOutlet]="optionTemplateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+				</checkbox>
+			</li>
+		</ul>
+	</div>
+	<span class="sm-toggle-icon">
+    <i class="fa fa-angle-{{isOpen ? 'up' : 'down'}}"></i>
+  </span>
+</div>

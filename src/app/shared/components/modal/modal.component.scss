@@ -1,0 +1,165 @@
+@import './src/assets/styles/utils/_exports';
+
+$modals: (
+  side: (
+    width: 300px
+  ),
+  xs: (
+    width: 300px
+  ),
+  sm: (
+    width: 400px
+  ),
+  md: (
+    width: 500px
+  ),
+  lg: (
+    width: 600px
+  ),
+  xl: (
+    width: 700px
+  )
+);
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 9000;
+  background: rgba(0, 0, 0, 0.6);
+  transition: opacity 200ms ease;
+
+  &.open {
+    opacity: 1;
+    visibility: visible;
+
+    .modal {
+
+      &.modal-center {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 650ms ease;
+      }
+
+      &.modal-top {
+        top: 50px;
+      }
+
+      &.modal-right {
+        right: 0;
+      }
+
+      &.modal-bottom {
+        bottom: 50px;
+      }
+
+      &.modal-left {
+        left: 0;
+      }
+    }
+  }
+}
+
+.modal {
+  position: absolute;
+  width: 95%;
+  // padding: 30px 40px;
+  overflow: auto;
+  z-index: 1000;
+  background-color: white;
+  transition: all 150ms ease;
+  
+  &.modal-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &.modal-top,
+  &.modal-bottom {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.modal-top {
+    top: 0;
+  }
+
+  &.modal-bottom {
+    bottom: 0;
+  }
+
+  &.modal-left {
+    left: -300px;
+    width: 300px;
+    height: 100%;
+  }
+
+  &.modal-right {
+    right: -300px;
+    width: 300px;
+    height: 100%;
+  }
+
+  &.modal-xs {
+
+    @include respond-from(xxs) {
+      width: 350px;
+    }
+  }
+
+  &.modal-sm {
+
+    @include respond-from(xxs) {
+      width: 400px;
+    }
+  }
+
+  &.modal-md {
+
+    @include respond-from(xs) {
+      width: 500px;
+    }
+  }
+
+  &.modal-lg {
+
+    @include respond-from(xs) {
+      width: 600px;
+    }
+  }
+
+  &.modal-xl {
+
+    @include respond-from(sm) {
+      width: 700px;
+    }
+  }
+
+  &.modal-full {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+
+  &.modal-fluid {
+
+    @include respond-from(sm) {
+      width: 75%;
+      max-height: 75%;
+    }
+
+    @include respond-from(lg) {
+      width: auto;
+      height: auto;
+    }
+  }
+}

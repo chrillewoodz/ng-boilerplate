@@ -1,0 +1,125 @@
+.text-xxs {
+  font-size: 0.6rem;
+}
+
+.text-xs {
+  font-size: 0.8rem;
+}
+
+.text-sm {
+  font-size: 1rem;
+}
+
+.text-md {
+  font-size: 1.2rem;
+}
+
+.text-lg {
+  font-size: 1.4rem;
+}
+
+.text-xl {
+  font-size: 1.6rem;
+}
+
+.text-xxl {
+  font-size: 2rem;
+}
+
+.text-xxxl {
+  font-size: 2.4rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: palette('text', 'base');
+  font-family: $font-header, 'sans-serif';
+  font-weight: $font-weight-bold;
+}
+
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2 {
+  font-size: $font-size-h2;
+}
+
+h3 {
+  font-size: $font-size-h3;
+}
+
+h4 {
+  font-size: $font-size-h4;
+}
+
+h5 {
+  font-size: $font-size-h5;
+}
+
+h6 {
+  font-size: $font-size-h6;
+}
+
+a,
+article,
+li,
+p,
+span {
+  line-height: 1.2;
+  color: palette('text', 'base');
+  font-family: $font-text, sans-serif;
+  font-weight: $font-weight-normal;
+}
+
+.label {
+  font-family: $font-text, sans-serif;
+  font-size: 0.7rem;
+  font-weight: $font-weight-semi;
+  text-transform: uppercase;
+}
+
+.body {
+  font-family: $font-text, sans-serif;
+  font-weight: $font-weight-thin;
+}
+
+.btn {
+  font-family: $font-text, sans-serif;
+}
+
+.input,
+.textarea {
+  font-family: $font-text, sans-serif;
+
+  @include placeholder-styles() {
+    font-weight: 300;
+  }
+}
+
+custom-select {
+  
+  .select-option {
+    font-family: $font-text, sans-serif;
+  }
+
+  .select-placeholder {
+    font-weight: $font-weight-thin;
+  }
+}
+
+select-multiple {
+
+  .sm-option,
+  .sm-selected-options {
+    font-family: $font-text, sans-serif;
+  }
+
+  .sm-placeholder {
+    font-weight: $font-weight-thin;
+  }
+}

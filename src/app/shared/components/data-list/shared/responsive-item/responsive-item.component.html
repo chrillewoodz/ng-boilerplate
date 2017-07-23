@@ -1,0 +1,10 @@
+<div class="ri-wrapper">
+  <ul class="ri-list">
+    <li class="ri-item" *ngFor="let category of categories; trackBy:trackByFn">
+      <div>
+        <h6 class="text-xs ellipsis" translate>{{category.header}}</h6>
+      </div>
+      <div class="ellipsis">{{category.value}}</div>
+    </li>
+  </ul>
+</div>

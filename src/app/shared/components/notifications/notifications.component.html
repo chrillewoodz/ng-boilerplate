@@ -1,0 +1,8 @@
+<div class="notifications-wrapper theme-{{notification?.theme}}" [ngClass]="{active: isActive, 'sticky-top': isActive && notification?.stickyTop}">
+  <div class="notification">
+    <a class="notification-anchor" *ngIf="notification?.href" routerLink="notification?.href"></a>
+    <ng-container *ngIf="!notification?.href">
+      <span class="notification-text text-xs">{{notification?.message}}</span>
+    </ng-container>
+  </div>
+</div>

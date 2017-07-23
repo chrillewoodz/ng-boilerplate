@@ -1,0 +1,138 @@
+@import './src/assets/styles/utils/_exports';
+
+$checkbox-size: 1.75rem;
+
+.checkbox-wrapper {
+  display: inline-block;
+  line-height: initial;
+  margin-bottom: 1em;
+
+  &.disabled {
+
+    .checkbox-label {
+      opacity: 0.5;
+      cursor: default;
+    }
+  }
+
+  .checkbox {
+    display: none !important;
+  }
+}
+
+.checkbox-label {
+  position: relative;
+  display: block;
+  cursor: pointer;
+
+  &.float-left {
+    padding: 0 0 0 2.25rem;
+
+    .checkbox-label-text {
+      padding-left: 0;
+    }
+
+    .checkbox-indicator {
+      left: 0;
+    }
+  }
+
+  &.float-right {
+    padding: 0 2.25rem 0 0;
+
+    .checkbox-label-text {
+      padding-right: 0;
+    }
+
+    .checkbox-indicator {
+      right: 0;
+      left: auto;
+    }
+  }
+}
+
+.checkbox-label-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: $checkbox-size;
+  height: $checkbox-size;
+  margin-top: -$checkbox-size/2;
+  border-radius: 50%;
+  background-color: palette('neutral', 'light');
+  transition: background-color 150ms ease;
+
+  &:after {
+    content: '\f00c';
+    display: inline-block;
+    width: 100%;
+    border-color: transparent;
+    line-height: $checkbox-size;
+    opacity: 0;
+    visibility: hidden;
+    color: white;
+    font-family: 'FontAwesome';
+    font-size: 1em;
+    text-align: center;
+  }
+}
+
+.checkbox {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+
+  &:checked ~ {
+
+    .checkbox-indicator {
+
+      &:after {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .checkbox-primary & {
+        background-color: palette('primary');
+      }
+
+      .checkbox-complement & {
+        background-color: palette('complement');
+      }
+
+      .checkbox-success & {
+        background-color: palette('success');
+      }
+
+      .checkbox-warning & {
+        background-color: palette('warning');
+      }
+
+      .checkbox-danger & {
+        background-color: palette('danger');
+      }
+
+      .checkbox-neutral & {
+        background-color: palette('neutral');
+      }
+
+      .checkbox-inverted & {
+
+        &:after {
+          color: palette('primary');
+        }
+      }
+    }
+  }
+
+  &:focus + {
+
+    .checkbox-indicator {
+      border-color: palette('primary');
+    }
+  }
+}

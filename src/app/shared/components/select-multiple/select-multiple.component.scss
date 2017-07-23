@@ -1,0 +1,241 @@
+@import './src/assets/styles/utils/_exports';
+
+$total: 50px;
+$color: whitesmoke;
+
+.sm-control {
+  position: relative;
+	margin-bottom: 1em;
+  cursor: pointer;
+
+  &.open {
+    
+    .sm-selected-options {
+      border-color: palette('primary');
+    }
+  }
+
+	&.disabled {
+
+		&:before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: inherit;
+			content: '';
+			z-index: 2;
+			background-color: rgba(0, 0, 0, 0.1);
+		}
+	}
+}
+
+.sm-labeled {
+  width: 100%;
+  height: 40px;
+	line-height: 40px;
+	border-bottom: 0;
+
+	.sm-options {
+    position: absolute;
+    top: $total;
+    left: 0;
+		z-index: 6004;
+
+		&.disabled {
+			background: none;
+		}
+	}
+}
+
+.sm-check-all-btn {
+  @include pos-y();
+  right: 0;
+  font-size: 0.7rem;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+}
+
+.sm-outer-options {
+	position: relative;
+  height: $total;
+	border-radius: 3px;
+
+  > .sm-option {
+    height: inherit;
+    padding: 0;
+  }
+}
+
+.sm-options {
+	position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: auto;
+	max-height: 300px;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-top: 0;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+	overflow: auto;
+  opacity: 0;
+  visibility: hidden;
+	z-index: 6004;
+  background-color: #fff;
+  transition: opacity 150ms ease;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+	.sm-option {
+
+    // &:first-of-type {
+    //   // background-color: $color;
+
+    //   &:hover {
+    //     background-color: $color;
+    //   }
+    // }
+
+    &:hover {
+      background-color: palette('neutral', 'dark');
+
+      /deep/ checkbox {
+
+        .checkbox-indicator {
+          background-color: palette('neutral', 'light');
+        }
+      }
+    }
+	}
+}
+
+.sm-options-list {
+
+  .sm-option {
+    
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.sm-option {
+	position: relative;
+  margin-bottom: 6px;
+  white-space: nowrap;
+	border-radius: 2px;
+  background-color: palette('neutral', 'light');
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out;
+
+	> div {
+    display: inline-block;
+
+    &:first-of-type {
+      max-width: 100%;
+      padding-right: 30px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+		&:last-of-type {
+      position: absolute;
+			right: 15px;
+      height: 100%;
+		}
+	}
+
+  /deep/ checkbox {
+
+    .checkbox-control {
+      margin-bottom: 0;
+
+      .checkbox-label {
+        padding: 15px;
+      }
+
+      .checkbox-indicator {
+        right: 15px !important;
+        background-color: palette('neutral', 'dark');
+      }
+    }
+  }
+
+  &-static {
+    position: relative;
+    margin-bottom: 10px;
+    background-color: palette('neutral');
+
+    &:hover {
+      background-color: none;
+    }
+  }
+}
+
+.sm-search {
+	background-color: $color;
+}
+
+.sm-option-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.sm-selected-options {
+  @include pos(16px, $left: 0);
+  min-height: 35px;
+  padding: 6px 0 10px;
+  overflow: hidden;
+  border-bottom: 1px solid palette('neutral', 'light');
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background-color: white;
+  transition: border-color 150ms ease;
+  cursor: pointer;
+
+  &.populated {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.sm-selected-options-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sm-selected-options-list-item {
+  float: left;
+  max-width: 130px;
+	margin-right: 5px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.sm-selected-options-additional {
+	font-weight: bold;
+}
+
+.sm-toggle-icon {
+  @include pos-y();
+  right: 15px;
+  font-size: 1.5em;
+}
+
+/deep/ search-input {
+
+  .form-control {
+    padding: 0;
+  }
+}

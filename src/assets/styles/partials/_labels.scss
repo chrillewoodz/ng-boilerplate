@@ -1,0 +1,35 @@
+.box-label {
+  float: left;
+  margin-right: 4px;
+  padding: 4px 6px;
+}
+
+.label-primary {
+  background-color: palette('primary');
+  color: palette('primary', 'complement');
+}
+
+.label-complement {
+  background-color: palette('complement');
+  color: palette('primary', 'complement');
+}
+
+.label-success {
+  background-color: palette('success');
+  color: palette('primary', 'complement');
+}
+
+.label-danger {
+  background-color: palette('danger');
+  color: palette('primary', 'complement');
+}
+
+.label-neutral {
+  background-color: palette('neutral');
+  color: #000;
+}
+
+.label-special {
+  background-color: palette('special');
+  color: palette('primary', 'complement');
+}

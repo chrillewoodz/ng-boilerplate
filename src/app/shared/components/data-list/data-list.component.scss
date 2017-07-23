@@ -1,0 +1,21 @@
+@import './src/assets/styles/utils/_exports';
+
+$padding-right: 15px;
+
+.list-header {
+
+  /deep/ div[class*='col-'] {
+    padding-right: $padding-right;
+
+    .btn {
+      vertical-align: initial;
+    }
+  }
+}
+
+.list-item {
+
+  /deep/ div[class*='col-'] {
+    padding-right: $padding-right;
+  }
+}

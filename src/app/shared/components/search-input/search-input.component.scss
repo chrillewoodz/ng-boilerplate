@@ -1,0 +1,18 @@
+@import './src/assets/styles/utils/_exports';
+
+:host {
+
+  .form-control {
+    width: 100%;
+    background: none;
+
+    @include respond-from(sm) {
+      width: 300px; 
+    }
+  }
+
+  .input {
+    background: none;
+    color: black;
+  }
+}

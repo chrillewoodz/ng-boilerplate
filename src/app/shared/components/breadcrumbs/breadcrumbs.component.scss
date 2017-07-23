@@ -1,0 +1,35 @@
+@import './src/assets/styles/utils/_exports';
+
+.breadcrumbs-wrapper {
+  padding: 20px 20px 10px;
+}
+
+.breadcrumbs-list {
+
+}
+
+/deep/ .breadcrumbs-list-item {
+  float: left;
+  margin-bottom: 5px;
+
+  &:after {
+    float: right;
+    content: '/';
+    padding: 0 5px;
+  }
+
+  &:last-of-type {
+
+    &:after {
+      content: none;
+    }
+  }
+
+  &.current {
+    color: #000;
+  }
+}
+
+.breadcrumbs-list-item-link {
+  @include anchors(palette('primary'), palette('primary', 'dark'), true, false);
+}

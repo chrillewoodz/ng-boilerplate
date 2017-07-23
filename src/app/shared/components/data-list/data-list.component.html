@@ -1,0 +1,12 @@
+<div class="container-fluid">
+  <header class="row p-x-4 text-bold list-header">
+    <ng-content select="[header]"></ng-content>
+  </header>
+  <ul class="row list">
+    <li class="col-xs-12 list-item" *ngFor="let item of items trackBy:trackByFn" (click)="itemClicked.emit(item)">
+      <ng-template [ngTemplateOutlet]="templateRef" [ngOutletContext]="{$implicit: item}"></ng-template>
+    </li>
+    <li class="col-xs-12 list-item-static text-center" *ngIf="!total && total !== undefined" translate>GLOBALS.NO_RESULTS</li>
+  </ul>
+  <p-paginator *ngIf="isPaginationAvailable && (total > limit)" [rows]="limit" [totalRecords]="total" (onPageChange)="pageChanged.emit($event?.page)"></p-paginator>
+</div>

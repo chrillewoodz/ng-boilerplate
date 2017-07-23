@@ -1,0 +1,27 @@
+html {
+  font-size: $font-size-root;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: palette('neutral', 'light');
+  color: palette('text', 'primary');
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+a {
+  display: inline-block;
+}

@@ -1,0 +1,63 @@
+@import './src/assets/styles/utils/_exports';
+
+.switch-container {
+  line-height: 36px;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  float: right;
+  width: 52px;
+  height: 30px;
+  margin: 3px 0 0;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  display: none;
+}
+
+.switch-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 30px;
+  background-color: palette('neutral', 'light');
+  transition: .4s;
+  cursor: pointer;
+
+  &:before {
+    position: absolute;
+    content: '';
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    border-radius: 50%;
+    background-color: white;
+    transition: .4s;
+  }
+}
+
+.checkbox {
+
+  &:checked {
+
+    + .slider {
+      background-color: palette('primary');
+
+      &:before {
+        transform: translateX(22px);
+      }
+    }
+  }
+}

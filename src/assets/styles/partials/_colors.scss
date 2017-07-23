@@ -1,0 +1,31 @@
+.anchor-primary {
+  @include anchors(palette('primary'), palette('primary'), false, false);
+
+  @include respond-from(md) {
+    @include anchors(palette('primary'), palette('primary', 'dark'), true, false);
+  }
+}
+
+.color-primary {
+  color: palette('primary');
+}
+
+.color-complement {
+  color: palette('complement');
+}
+
+.color-success {
+  color: palette('success');
+}
+
+.color-danger {
+  color: palette('danger');
+}
+
+.text-primary {
+  color: palette('text', 'base');
+}
+
+.text-complement {
+  color: palette('text', 'complement');
+}

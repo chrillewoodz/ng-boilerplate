@@ -1,0 +1,65 @@
+@import './src/assets/styles/utils/_exports';
+
+.sh {
+  @include pos(0, $left: 0, $pos: fixed);
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  padding: 0 20px;
+  z-index: 999;
+  background-color: palette('primary', 'complement');
+  color: palette('neutral', 'dark');
+
+  &-projection {
+    display: inline-block;
+  }
+
+  &-right {
+    display: inline-block;
+  }
+
+  &-logo {
+    height: 30px;
+    vertical-align: middle;
+  }
+
+  /deep/ dropdown {
+
+    .dropdown-wrapper {
+      display: inline-block;
+
+      .dropdown-toggle {
+        background: none;
+        font-size: 1.4rem;
+
+        @include respond-from(sm) {
+          padding-right: 14px;
+        }
+
+        .dropdown-icon {
+          position: static;
+          transform: none;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.nav-toggle {
+  @include pos-y();
+  right: 0;
+  width: 26px;
+  padding: 0;
+
+  &-pin {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: palette('primary', 'complement');
+
+    &:nth-of-type(2) {
+      margin: 4px 0;
+    }
+  }
+}

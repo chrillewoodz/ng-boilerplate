@@ -1,0 +1,85 @@
+$primary: #009688;
+$primary-light: lighten($primary, 5%);
+$primary-dark: darken($primary, 5%);
+$primary-complement: #fff;
+
+$complement: #00ABEB;
+$complement-light: lighten($complement, 10%);
+$complement-dark: darken($complement, 5%);
+
+$success: #1CCC71;
+$success-light: '';
+$success-dark: darken($success, 5%);
+
+$warning: '';
+$warning-light: '';
+$warning-dark: '';
+
+$danger: #D32323;
+$danger-light: '';
+$danger-dark: darken($danger, 5%);
+
+$neutral: #e3e3e3;
+$neutral-light: #f3f3f3;
+$neutral-lighter: #f7f7f7;
+$neutral-dark: #D1D1D1;
+
+$special: #ffde39;
+$special-light: lighten($special, 5%);
+$special-dark: darken($special, 10%);
+
+$facebook: #3B5998;
+$facebook-light: '';
+$facebook-dark: '';
+
+$text-primary: #555459;
+$text-complement: #929292;
+
+$colors: (
+  primary: (
+    base: $primary,
+    light: $primary-light,
+    dark: $primary-dark,
+    complement: $primary-complement
+  ),
+  complement: (
+    base: $complement,
+    light: $complement-light,
+    dark: $complement-dark
+  ),
+  success: (
+    base: $success,
+    light: $success-light,
+    dark: $success-dark
+  ),
+  warning: (
+    base: $warning,
+    light: $warning-light,
+    dark: $warning-dark
+  ),
+  danger: (
+    base: $danger,
+    light: $danger-light,
+    dark: $danger-dark
+  ),
+  neutral: (
+    base: $neutral,
+    light: $neutral-light,
+    lighter: $neutral-lighter,
+    dark: $neutral-dark
+  ),
+  special: (
+    base: $special,
+    light: $special-light,
+    dark: $special-dark
+  ),
+  facebook: (
+    base: $facebook,
+    light: $facebook-light,
+    dark: $facebook-dark
+  ),
+  text: (
+    base: $text-primary,
+    complement: $text-complement
+  )
+);

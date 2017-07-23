@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i');
+
+// Font sizes
+$font-size-root: 16px;
+
+$font-size-h1: 3rem;
+$font-size-h2: 2.6rem;
+$font-size-h3: 2.2rem;
+$font-size-h4: 1.8rem;
+$font-size-h5: 1.4rem;
+$font-size-h6: 1rem;
+
+$font-size-xl: 2.625rem; // 42px/16px
+$font-size-lg: 2rem; // 32px/16px
+$font-size-md: 1.625rem; // 26px/16px
+$font-size-sm: 1.5rem; // 24px/16px
+$font-size-xs: 1.25rem; // 20px/16px
+$font-size-xxs: 1rem; // 16px/16px
+
+// Font families
+$font-header: 'Ubuntu';
+$font-text: 'Ubuntu';
+
+$font-weight-thin: 300;
+$font-weight-normal: 400;
+$font-weight-semi: 600;
+$font-weight-bold: 700;
