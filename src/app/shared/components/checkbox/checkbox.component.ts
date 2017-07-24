@@ -18,13 +18,10 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   @Input() size = 'md';
   @Input() theme = 'primary';
   @Input() float = 'left';
-  @Output() callback: EventEmitter<any> = new EventEmitter<any>();
-
-  private _model: boolean;
 
   public id: string;
 
-  public propagateChange = (_: any) => {};
+  private _model: boolean;
 
   constructor(private cd: ChangeDetectorRef) {}
 
@@ -36,6 +33,8 @@ export class CheckboxComponent implements ControlValueAccessor, OnInit {
   get model() {
     return this._model;
   }
+
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn: () => any) {
     this.propagateChange = fn;

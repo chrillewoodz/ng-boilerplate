@@ -3,7 +3,7 @@
     <span class="label checkbox-label-text">
       <ng-content></ng-content>
     </span>
-    <input type="checkbox" class="checkbox" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [id]="id" [disabled]="disabled" (change)="callback.emit(model)">
+    <input type="checkbox" class="checkbox" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [id]="id" [disabled]="disabled">
     <div class="checkbox-indicator"></div>
   </label>
 </div>
