@@ -26,8 +26,8 @@ No.
 
 Yes.
 
-##### BreadcrumbsUtils (`@components/breadcrumbs/shared/breadcrumbs.service`)
-Allows you to manipulate each individual label of the breadcrumbs.
+### BreadcrumbsUtils (`@components/breadcrumbs/shared/breadcrumbs-utils.service`)
+Allows you to manipulate each individual label of the breadcrumbs
 
 ###### addFriendlyNameForRoute(route: string, name: string): void
 Specifies a friendly name for the corresponding route
