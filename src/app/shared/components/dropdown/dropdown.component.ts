@@ -17,7 +17,7 @@ export class DropdownComponent {
 
   public isOpen = false;
 
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   /* Toggles the dropdown
    *
@@ -43,7 +43,7 @@ export class DropdownComponent {
 
     this.isOpen = false;
 
-    this.changeDetector.markForCheck();
+    this.cd.markForCheck();
   }
 
   run(option: any): void {

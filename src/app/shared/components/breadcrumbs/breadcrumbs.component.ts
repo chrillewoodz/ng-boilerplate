@@ -22,7 +22,7 @@ export class BreadcrumbsComponent implements OnDestroy, OnInit {
   private routerSubscription: Subscription;
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
+    private cd: ChangeDetectorRef,
     private route: ActivatedRoute,
     private router: Router,
     private breadcrumbsUtils: BreadcrumbsUtils
@@ -40,7 +40,7 @@ export class BreadcrumbsComponent implements OnDestroy, OnInit {
         this.url = (event as NavigationEnd).urlAfterRedirects ? (event as NavigationEnd).urlAfterRedirects : event.url;
         this.urls.length = 0;
         this.generateBreadcrumbTrail(this.url);
-        this.changeDetector.markForCheck();
+        this.cd.markForCheck();
       }
     );
 
@@ -50,7 +50,7 @@ export class BreadcrumbsComponent implements OnDestroy, OnInit {
         if (this.url) {
           this.urls.length = 0;
           this.generateBreadcrumbTrail(this.url);
-          this.changeDetector.markForCheck();
+          this.cd.markForCheck();
         }
       }
     );

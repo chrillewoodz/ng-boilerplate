@@ -82,7 +82,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   private documentTouchHandler: any;
 
   constructor(
-    private changeDetector: ChangeDetectorRef,
+    private cd: ChangeDetectorRef,
     private modalApi: ModalApi,
     private router: Router,
     private renderer: Renderer2
@@ -94,7 +94,7 @@ export class ModalComponent implements OnInit, OnDestroy {
       (modal: any) => {
         this.isOpen = modal.id === this.modalId ? modal.isOpen : false;
         this.currentTemplate = modal.template;
-        this.changeDetector.markForCheck();
+        this.cd.markForCheck();
 
         if (!this.isOpen && modal.id === this.modalId) {
           this.closed.emit(this.modalId);

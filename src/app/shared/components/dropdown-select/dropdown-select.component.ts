@@ -18,11 +18,9 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class DropdownSelectComponent implements ControlValueAccessor {
   @ContentChild('modelRef') modelRef: TemplateRef<any>;
   @ContentChild('optionRef') optionRef: TemplateRef<any>;
-  @Input() options: any[];
-  @Input() optionsLabel = 'label';
+  @Input() options: any[] = [];
   @Input() uniqueKey = 'id';
-  @Input() placeholder = '';
-  @Input() isDisabled: boolean;
+  @Input() disabled = false;
   @Input() isToggleIconVisible = true;
 
   public isOpen = false;
@@ -61,7 +59,7 @@ export class DropdownSelectComponent implements ControlValueAccessor {
    */
   toggle(): boolean {
 
-    if (this.isDisabled) {
+    if (this.disabled) {
 
       this.isOpen = false;
 
@@ -89,5 +87,9 @@ export class DropdownSelectComponent implements ControlValueAccessor {
     this.propagateChange(this.model);
 
     this.close();
+  }
+
+  trackByFn(i: number, item) {
+    return item[this.uniqueKey];
   }
 }

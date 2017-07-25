@@ -2,28 +2,24 @@
 
 ```
   public options = [
-    {id: 0, label: 'Hello world', clickHandler: this.travelTheWorld.bind(this)},
-    {id: 1, label: 'Hello universe', clickHandler: this.travelTheUniverse.bind(this)}
+    {id: 0, label: 'Name', value: 'name'},
+    {id: 1, label: 'Description', 'description'}
   ];
 
-  <dropdown [options]="options" [dataToEmit]="anyValue">
-    <ng-template let-option>{{option.label}}</ng-template>
-  </dropdown>
+  <dropdown-select [(ngModel)]="sortBy" [options]="options">
+    <!-- MAKE SURE TO INCLUDE THE ? OPERATOR -->
+    <ng-template #modelRef let-model>{{model?.label}}</ng-template>
+    <ng-template #optionRef let-option>{{option.label}}</ng-template>
+  </dropdown-select>
 ```
 
 # Inputs
 
 ###### {any[]} options
-The options of the dropdown, should include a unique
+The options of the dropdown, should include at least a unique key and a label
 
 - Allowed values: An array with objects
 - Default: `[]`
-
-###### {any} dataToEmit
-Any data to pass as argument to the `clickHandler` function
-
-- Allowed values: Anything
-- Default: `false`
 
 ###### {boolean} disabled
 Decides if the dropdown is disabled or not
@@ -52,11 +48,15 @@ None.
 
 Yes.
 
+`#modelRef`:
+- Outlet contexts: `let-model`
+
+`#optionRef`:
 - Outlet contexts: `let-option`
 
 # ControlValueAccessor
 
-No.
+Yes.
 
 # ChangeDetectionStrategy
 
