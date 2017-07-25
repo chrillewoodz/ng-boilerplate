@@ -14,16 +14,14 @@ import {SiteHeaderApi} from './shared/site-header-api.service';
 export class SiteHeaderComponent implements OnDestroy, OnInit {
   @Input() siteHeaderId: string;
 
-  constructor(
-    private cd: ChangeDetectorRef,
-    private router: Router,
-    private shApi: SiteHeaderApi
-  ) {}
+  @HostBinding('class.state-triggered')
+  isTriggered = false;
 
   private shApiSubscription: Subscription;
 
-  @HostBinding('class.state-triggered')
-  isTriggered: boolean = false;
+  constructor(
+    private shApi: SiteHeaderApi
+  ) {}
 
   ngOnInit() {
 

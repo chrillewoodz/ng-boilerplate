@@ -5,11 +5,11 @@ import {Subject} from 'rxjs/Subject';
 
 export class SiteHeaderApi {
 
-  constructor() {}
-
   private states = new Subject<any>();
 
-  states$ = this.states.asObservable();
+  public states$ = this.states.asObservable();
+
+  constructor() {}
 
   trigger(id: string): void {
     this.states.next({id: id});
