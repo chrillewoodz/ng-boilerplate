@@ -16,10 +16,11 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 })
 
 export class FileUploaderComponent implements ControlValueAccessor {
-  @Input() info: any;
-  @Input() maxUploads = 1;
+  @Input() info = null;
+  @Input() multiple = false;
+  @Input() max = null;
   @Input() btnClasses = '';
-  @Output('ngModelChange') modelChange: EventEmitter<any> = new EventEmitter<any>();
+  @Output() filesSelected: EventEmitter<any> = new EventEmitter<any>();
 
   public model: any[] = [];
 
@@ -76,9 +77,9 @@ export class FileUploaderComponent implements ControlValueAccessor {
 
          if (e.target.files.length === completed) {
 
-           this.modelChange.emit({
+           this.filesSelected.emit({
              existingFiles: this.model,
-             newFiles: newFiles,
+             newFiles: this.max === null ? newFiles : newFiles.slice(0, this.max),
              info: this.info
            });
          }

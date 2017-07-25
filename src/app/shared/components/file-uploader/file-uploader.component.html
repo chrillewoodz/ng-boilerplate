@@ -2,5 +2,5 @@
   <button class="btn fu-toggle" [ngClass]="btnClasses" type="button" (click)="toggleFileInput(fileInput)">
     <ng-content></ng-content>
   </button>
-  <input #fileInput type="file" class="fu-input" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" multiple hidden (change)="readFiles($event)">
+  <input #fileInput type="file" class="fu-input" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [multiple]="multiple" hidden (change)="readFiles($event)">
 </div>
