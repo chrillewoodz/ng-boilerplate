@@ -1,6 +1,10 @@
 # Usage
 
-`<checkbox [(ngModel)]="isChecked">I agree to terms and conditions</checkbox>`
+```
+<checkboxes [(ngModel)]="selectedItems" [options]="options">
+  <ng-template let-option>{{option.label}}</ng-template>
+</checkboxes>
+```
 
 # Inputs
 
