@@ -26,6 +26,7 @@ export class DataListComponent {
   @Input() total: number;
   @Input() limit: number;
   @Input() uniqueKey = 'id';
+  @Input() noResultsText = 'No results available';
   @Input() isPaginationAvailable = true;
 
   @Input() set items(items) {
@@ -39,7 +40,7 @@ export class DataListComponent {
     return this._items;
   }
 
-  private _items: any[];
+  private _items: any[] = [];
 
   trackByFn(i: number, item: any): void {
     return item[this.uniqueKey];
