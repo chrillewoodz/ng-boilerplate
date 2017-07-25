@@ -2,14 +2,14 @@
   <div #exception>
     <label class="label select-label" [for]="selectId">{{label}}</label>
     <input class="input select-selected-option" [id]="selectId" [ngModel]="model ? model[optionsLabel] : ''" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
-    <ng-template [ngTemplateOutlet]="modelTemplateRef" [ngOutletContext]="{$implicit: model}"></ng-template>
+    <!-- TODO: Make this work with the above input -->
+    <!-- <ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: model}"></ng-template> -->
   </div>
   <ul class="select-options">
     <ng-container *ngFor="let option of options">
       <ng-container *ngIf="!isSelected(option)">
         <li class="label select-option" (click)="selectOption(option)" [ngClass]="{marked: option.isMarked}">
-          <span class="text-bold" *ngIf="!isCustomOptionTemplate">{{option[optionsLabel]}}</span>
-          <ng-template *ngIf="isCustomOptionTemplate" [ngTemplateOutlet]="optionTemplateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+          <ng-template [ngTemplateOutlet]="optionRef" [ngOutletContext]="{$implicit: option}"></ng-template>
         </li>
       </ng-container>
     </ng-container>

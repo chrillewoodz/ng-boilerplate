@@ -3,12 +3,10 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  EventEmitter,
   forwardRef,
   Input,
   OnDestroy,
   OnInit,
-  Output,
   Renderer2,
   TemplateRef
 } from '@angular/core';
@@ -33,18 +31,14 @@ import {Utils} from '@services/utils.service';
 })
 
 export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit {
-  @ContentChild('modelTemplate', {read: TemplateRef}) modelTemplateRef: TemplateRef<any>;
-  @ContentChild('optionTemplate', {read: TemplateRef}) optionTemplateRef: TemplateRef<any>;
+  @ContentChild('modelRef', {read: TemplateRef}) modelRef: TemplateRef<any>;
+  @ContentChild('optionRef', {read: TemplateRef}) optionRef: TemplateRef<any>;
   @Input() options: any[] = [];
   @Input() uniqueKey = 'id';
   @Input() disabled = false;
-  @Input() optionsLabel = 'name';
+  @Input() optionsLabel = 'label';
   @Input() placeholder = '';
   @Input() label = '';
-  @Input() isCustomModelTemplate = false;
-  @Input() isCustomOptionTemplate = false;
-  @Output() ngModelChange: EventEmitter<any> = new EventEmitter<any>();
-  @Output() callback: EventEmitter<any> = new EventEmitter<any>();
 
   public selectId: string = Utils.getUniqueID();
   public isOpen = false;
@@ -113,9 +107,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
         const currentlyMarked = SelectUtils.getCurrentlyMarked(this.options);
 
         if (currentlyMarked) {
-          this.model = currentlyMarked;
 
-          this.callback.emit(this.model);
+          this.model = currentlyMarked;
 
           SelectUtils.resetMarkedList(this.options);
 
@@ -163,7 +156,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
     this.close();
 
     this.propagateChange(this.model);
-    this.callback.emit(this.model);
   }
 
   isSelected(option: any): boolean {
