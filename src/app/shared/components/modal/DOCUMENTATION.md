@@ -12,6 +12,8 @@ Example 1:
 <button modalOpen modalId="confirmation">Proceed</button>
 ```
 
+Example 2:
+
 ```
 <modal #modal modalId="confirmation" position="top" size="sm">
   <div *ngIf="modal.currentTemplate === 'step-one'">
