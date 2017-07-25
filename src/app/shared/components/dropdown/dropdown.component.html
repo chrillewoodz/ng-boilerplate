@@ -1,14 +1,11 @@
-<div class="dropdown-wrapper" [ngClass]="{open: isOpen, disabled: isDisabled}" (outsideClick)="close()" [exceptions]="[toggler]">
+<div class="dropdown-wrapper" [ngClass]="{open: isOpen, disabled: disabled}" (outsideClick)="close()" [exceptions]="[toggler]">
   <header class="dropdown-header">
 		<button #toggler class="btn btn-sm btn-neutral dropdown-toggle" type="button" (click)="toggle()">
       <ng-content></ng-content>
       <span class="dropdown-icon" *ngIf="isToggleIconVisible"><i class="fa fa-angle-{{isOpen ? 'up' : 'down'}}"></i></span></button>
-     <!--<div #target class="dropdown-content-target">
-      <ng-content select="[header]"></ng-content>
-    </div> -->
 	</header>
 	<ul class="dropdown-menu">
-		<li class="dropdown-menu-item" *ngFor="let option of options" (click)="run(option); close()">
+		<li class="dropdown-menu-item" *ngFor="let option of options; trackBy:trackByFn" (click)="run(option); close()">
       <ng-template [ngTemplateOutlet]="templateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
     </li>
 	</ul>

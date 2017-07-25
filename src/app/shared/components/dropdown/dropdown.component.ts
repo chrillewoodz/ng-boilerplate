@@ -9,9 +9,10 @@ import {ChangeDetectorRef, ChangeDetectionStrategy, Component, ContentChild, Inp
 
 export class DropdownComponent {
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
-  @Input() options: any[];
-  @Input() dataToEmit: any;
-  @Input() isDisabled: boolean;
+  @Input() options: any[] = [];
+  @Input() dataToEmit = null;
+  @Input() disabled = false;
+  @Input() uniqueKey = 'id';
   @Input() isToggleIconVisible = true;
 
   public isOpen = false;
@@ -24,7 +25,7 @@ export class DropdownComponent {
    */
   toggle(): boolean {
 
-    if (this.isDisabled) {
+    if (this.disabled) {
 
       this.isOpen = false;
 
@@ -50,5 +51,9 @@ export class DropdownComponent {
     if (option.clickHandler && typeof option.clickHandler === 'function') {
       option.clickHandler({emitted: this.dataToEmit, option: option});
     }
+  }
+
+  trackByFn(i: number, item) {
+    return item[this.uniqueKey];
   }
 }
