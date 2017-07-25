@@ -1,16 +1,16 @@
 # Usage
 
 ```
-  public options = [
-    {id: 0, label: 'Name', value: 'name'},
-    {id: 1, label: 'Description', 'description'}
-  ];
+public options = [
+  {id: 0, label: 'Name', value: 'name'},
+  {id: 1, label: 'Description', 'description'}
+];
 
-  <dropdown-select [(ngModel)]="sortBy" [options]="options">
-    <!-- MAKE SURE TO INCLUDE THE ? OPERATOR -->
-    <ng-template #modelRef let-model>{{model?.label}}</ng-template>
-    <ng-template #optionRef let-option>{{option.label}}</ng-template>
-  </dropdown-select>
+<dropdown-select [(ngModel)]="sortBy" [options]="options">
+  <!-- MAKE SURE TO INCLUDE THE ? OPERATOR -->
+  <ng-template #modelRef let-model>{{model?.label}}</ng-template>
+  <ng-template #optionRef let-option>{{option.label}}</ng-template>
+</dropdown-select>
 ```
 
 # Inputs
