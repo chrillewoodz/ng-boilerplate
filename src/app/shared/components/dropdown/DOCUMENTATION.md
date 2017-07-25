@@ -14,7 +14,7 @@ public options = [
 # Inputs
 
 ###### {any[]} options
-The options of the dropdown, should include a unique
+The options of the dropdown, should include a unique key, a label and a `clickHandler` property.
 
 - Allowed values: An array with objects
 - Default: `[]`
