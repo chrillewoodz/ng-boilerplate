@@ -4,11 +4,11 @@
 
 # Inputs
 
-###### {boolean} disabled
-Decides whether the checkbox should be clickable or not
+###### {any[]} options
+The data of which to generate the checkboxes from
 
-- Allowed values: `true`, `false`
-- Default: `false`
+- Allowed values: Any array of objects
+- Default: `[]`
 
 ###### {string} size
 Sets the size of the checkbox & label
@@ -28,13 +28,22 @@ Decides where the text is aligned
 - Allowed values: `left`, `right`
 - Default: `left`
 
+###### {string} uniqueKey
+A unique key which will be used to identify a checkbox
+
+- Allowed values: Any string which is also a property in each of the `options` objects
+- Default: `id`
+
+
 # Outputs
 
 None.
 
 # TemplateRef
 
-No.
+Yes.
+
+- Outlet contexts: `let-option`
 
 # ControlValueAccessor
 

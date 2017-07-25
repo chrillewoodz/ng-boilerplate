@@ -1,4 +1,13 @@
-import {ChangeDetectionStrategy, Component, ContentChild, EventEmitter, forwardRef, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  forwardRef,
+  Input,
+  OnInit,
+  TemplateRef
+} from '@angular/core';
+
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {Utils} from '@services/utils.service';
@@ -15,20 +24,18 @@ import {Utils} from '@services/utils.service';
 
 export class CheckboxesComponent implements ControlValueAccessor, OnInit {
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
-  @Input() options: any[] = []
-  @Input() size: string = 'md';
-  @Input() theme: string = 'primary';
-  @Input() float: string = 'left';
-  @Input() uniqueKey: string = '_id';
-  @Output() callback: EventEmitter<any> = new EventEmitter<any>();
+  @Input() options: any[] = [];
+  @Input() size = 'md';
+  @Input() theme = 'primary';
+  @Input() float = 'left';
+  @Input() uniqueKey = 'id';
 
   public id: string;
-
-  public propagateChange = (_: any) => {};
-
   public model: any[] = [];
 
   constructor() {}
+
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn: () => any) {
     this.propagateChange = fn;
@@ -45,7 +52,7 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {}
 
-  selectOption(option: any) {
+  selectOption(option) {
 
     const i: number = Utils.findObjectIndex(this.model, option, this.uniqueKey);
 
@@ -57,5 +64,9 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
     }
 
     this.propagateChange(this.model);
+  }
+
+  trackByFn(i: number, item) {
+    return item[this.uniqueKey];
   }
 }
