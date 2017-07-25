@@ -1,14 +1,14 @@
 # Usage
 
 ```
-  public options = [
-    {id: 0, label: 'Hello world', clickHandler: this.travelTheWorld.bind(this)},
-    {id: 1, label: 'Hello universe', clickHandler: this.travelTheUniverse.bind(this)}
-  ];
+public options = [
+  {id: 0, label: 'Hello world', clickHandler: this.travelTheWorld.bind(this)},
+  {id: 1, label: 'Hello universe', clickHandler: this.travelTheUniverse.bind(this)}
+];
 
-  <dropdown [options]="options" [dataToEmit]="anyValue">
-    <ng-template let-option>{{option.label}}</ng-template>
-  </dropdown>
+<dropdown [options]="options" [dataToEmit]="anyValue">
+  <ng-template let-option>{{option.label}}</ng-template>
+</dropdown>
 ```
 
 # Inputs
