@@ -1,21 +1,11 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   forwardRef,
-  Input,
-  ViewChild
+  Input
 } from '@angular/core';
 
-import {
-  ControlValueAccessor,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  Validators,
-  NG_VALUE_ACCESSOR
-} from '@angular/forms';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 // Custom
 import {Utils} from '@services/utils.service';
