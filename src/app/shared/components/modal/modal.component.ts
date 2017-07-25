@@ -68,8 +68,8 @@ import {ModalApi} from '@components/modal/shared/services/modal-api.service';
 export class ModalComponent implements OnInit, OnDestroy {
   @ViewChild('overlay') overlay: ElementRef;
   @Input() modalId: string;
-  @Input() size: string;
-  @Input() position: string;
+  @Input() size = 'sm';
+  @Input() position = 'top';
   @Output() closed: EventEmitter<any> = new EventEmitter<any>();
 
   public isOpen = false;

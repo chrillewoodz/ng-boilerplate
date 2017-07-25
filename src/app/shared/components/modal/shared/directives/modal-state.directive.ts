@@ -1,7 +1,7 @@
 import {Directive, HostBinding, Input, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs/Subscription';
 
-import {ModalApi} from '../services/modal-api.service';
+import {ModalApi} from '../modal-api.service';
 
 @Directive({
   selector: '[modalState]'
@@ -9,12 +9,12 @@ import {ModalApi} from '../services/modal-api.service';
 
 export class ModalStateDirective implements OnDestroy, OnInit {
 
-  constructor(private modalApi: ModalApi) {}
+  @HostBinding('class.modal-open')
+  isOpen: boolean;
 
   private statesSubscription: Subscription;
 
-  @HostBinding('class.modal-open')
-  isOpen: boolean;
+  constructor(private modalApi: ModalApi) {}
 
   ngOnInit() {
 

@@ -1,6 +1,10 @@
 <div #overlay [ngClass]="{open: isOpen}" class="modal-overlay">
   <div id="{{modalId}}" class="modal modal-{{size}} modal-{{position}}">
-    <modal-close [modalId]="modalId"></modal-close>
+    <div class="mc-wrapper">
+      <span modalClose modalId class="mc-close-icon">
+        <i class="fa fa-times"></i>
+      </span>
+    </div>
     <ng-content></ng-content>
   </div>
 </div>

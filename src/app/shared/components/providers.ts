@@ -1,5 +1,5 @@
 import {BreadcrumbsUtils} from './breadcrumbs/shared/breadcrumbs-utils.service';
-import {ModalApi} from './modal/shared/services/modal-api.service';
+import {ModalApi} from './modal/shared/modal-api.service';
 import {NotificationsApi} from './notifications/shared/notifications-api.service';
 import {SiteHeaderApi} from './site-header/shared/site-header-api.service';
 
