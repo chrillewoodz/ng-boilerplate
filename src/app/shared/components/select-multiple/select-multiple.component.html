@@ -3,7 +3,7 @@
 	<label class="label select-label" [for]="selectId">{{label}}</label>
 	<div>
 		<input class="input" [id]="selectId" (focus)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
-		<ng-template [ngTemplateOutlet]="modelTemplateRef" [ngOutletContext]="{$implicit: model}"></ng-template>
+		<ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: model}"></ng-template>
 	</div>
 	<div class="sm-selected-options" [ngClass]="{populated: model?.length}" (click)="toggle()">
 		<ul class="sm-selected-options-list">
@@ -19,8 +19,7 @@
 			</li>
 			<li class="sm-option" *ngFor="let option of options; trackBy:trackByFn">
 				<checkbox [(ngModel)]="option.isChecked" (ngModelChange)="selectOption(option)" [ngModelOptions]="{standalone: true}" float="right">
-					<span *ngIf="!isCustomOptionTemplate">{{option[optionsLabel]}}</span>
-					<ng-template *ngIf="isCustomOptionTemplate" [ngTemplateOutlet]="optionTemplateRef" [ngOutletContext]="{$implicit: option}"></ng-template>
+					<ng-template [ngTemplateOutlet]="optionRef" [ngOutletContext]="{$implicit: option}"></ng-template>
 				</checkbox>
 			</li>
 		</ul>

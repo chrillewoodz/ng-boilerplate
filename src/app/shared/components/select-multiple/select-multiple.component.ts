@@ -18,15 +18,13 @@ import {Utils} from '@services/utils.service';
 })
 
 export class SelectMultipleComponent implements ControlValueAccessor {
-  @ContentChild('modelTemplate', {read: TemplateRef}) modelTemplateRef: TemplateRef<any>;
-  @ContentChild('optionTemplate', {read: TemplateRef}) optionTemplateRef: TemplateRef<any>;
+  @ContentChild('modelRef', {read: TemplateRef}) modelRef: TemplateRef<any>;
+  @ContentChild('optionRef', {read: TemplateRef}) optionRef: TemplateRef<any>;
   @Input() options: any[] = [];
   @Input() optionsLabel = 'name';
   @Input() labelsCap = 2;
   @Input() uniqueKey = '_id';
   @Input() disabled = false;
-  @Input() required = false;
-  @Input() theme = 'primary';
   @Input() queryPlaceholder = 'Search...';
   @Input() placeholder = '';
   @Input() label = '';
