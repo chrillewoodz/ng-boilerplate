@@ -1,7 +1,7 @@
 <div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}" click-outside (outsideClick)="close()" [exceptions]="[exception]">
 	<div #exception>
 		<div>
-			<label class="label select-label" [for]="selectId">{{label}}</label>
+			<label class="label select-label" *ngIf="label" [for]="selectId">{{label}}</label>
 			<input class="input sm-input" [id]="selectId" (focus)="open()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
 		</div>
 		<div class="sm-selected-options" [ngClass]="{populated: model?.length}" (click)="open()">

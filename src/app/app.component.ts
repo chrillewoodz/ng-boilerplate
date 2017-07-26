@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
     }
   ];
 
+    public options2 = [...this.options];
 
   constructor() {}
 

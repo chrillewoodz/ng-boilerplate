@@ -1,9 +1,7 @@
 <div #select class="select-control" [ngClass]="{open: isOpen, disabled: disabled, 'ng-dirty': isDirty}" isTouched click-outside (outsideClick)="close()" [exceptions]="[exception]">
   <div #exception>
-    <label class="label select-label" [for]="selectId">{{label}}</label>
-    <input class="input select-selected-option" [id]="selectId" [ngModel]="model ? model[optionsLabel] : ''" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
-    <!-- TODO: Make this work with the above input -->
-    <!-- <ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: model}"></ng-template> -->
+    <label class="label select-label" *ngIf="label" [for]="selectId">{{label}}</label>
+    <input class="input" [id]="selectId" [ngModel]="model ? model[optionsLabel] : ''" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
   </div>
   <ul class="select-options">
     <ng-container *ngFor="let option of options">

@@ -31,7 +31,6 @@ import {Utils} from '@services/utils.service';
 })
 
 export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit {
-  @ContentChild('modelRef', {read: TemplateRef}) modelRef: TemplateRef<any>;
   @ContentChild('optionRef', {read: TemplateRef}) optionRef: TemplateRef<any>;
   @Input() options: any[] = [];
   @Input() uniqueKey = 'id';

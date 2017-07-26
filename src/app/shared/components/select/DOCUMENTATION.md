@@ -58,9 +58,6 @@ No.
 
 Yes.
 
-`#modelRef`:
-- Outlet contexts: `let-model`
-
 `#optionRef`:
 - Outlet contexts: `let-option`
 
