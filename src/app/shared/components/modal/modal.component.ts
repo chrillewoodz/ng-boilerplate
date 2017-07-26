@@ -19,7 +19,7 @@ import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/filter';
 
-import {ModalApi} from '@components/modal/shared/services/modal-api.service';
+import {ModalApi} from '@components/modal/shared/modal-api.service';
 
 @Component({
   selector: 'modal',

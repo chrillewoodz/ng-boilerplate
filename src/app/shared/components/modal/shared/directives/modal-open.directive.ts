@@ -1,6 +1,6 @@
 import {Directive, HostListener, Input} from '@angular/core';
 
-import {ModalApi} from '../services/modal-api.service';
+import {ModalApi} from '../modal-api.service';
 
 @Directive({
   selector: '[modalOpen]'
