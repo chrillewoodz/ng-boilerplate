@@ -23,14 +23,17 @@ export class SelectMultipleComponent implements ControlValueAccessor {
   @Input() options: any[] = [];
   @Input() optionsLabel = 'name';
   @Input() labelsCap = 2;
-  @Input() uniqueKey = '_id';
+  @Input() uniqueKey = 'id';
   @Input() disabled = false;
   @Input() queryPlaceholder = 'Search...';
   @Input() placeholder = '';
   @Input() label = '';
   @Output() queryFn: EventEmitter<any> = new EventEmitter<any>();
 
-  constructor(private cd: ChangeDetectorRef) {}
+  public isOpen = false;
+  public selectId: string = Utils.getUniqueID();
+
+  private _model: any[] = [];
 
   set model(val) {
     this._model = val;
@@ -40,12 +43,9 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     return this._model;
   }
 
-  public isOpen: boolean = false;
-  public selectId: string = Utils.getUniqueID();
+  constructor(private cd: ChangeDetectorRef) {}
 
-  private _model: any[] = [];
-
-  public propagateChange = (_: any) => {};
+  propagateChange = (_: any) => {};
 
   registerOnChange(fn: () => any) {
     this.propagateChange = fn;
@@ -61,15 +61,16 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     }
   }
 
-  toggle(): boolean {
+  open(): boolean {
 
     if (this.disabled) {
+
       this.isOpen = false;
 
       return false;
     }
 
-    this.isOpen = !this.isOpen;
+    this.isOpen = true;
   }
 
   close(): void {
@@ -81,16 +82,16 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     if (this.disabled) {
       return false;
     }
-
+    console.log(this.model, option, this.uniqueKey);
     const existingModelIndex = Utils.findObjectIndex(this.model, option, this.uniqueKey);
 
-		if (existingModelIndex === -1) {
+    if (existingModelIndex === -1 && option.isChecked) {
       this.addToModel(option);
-		}
-		else {
-			this.removeFromModel(existingModelIndex);
-		}
-
+    }
+    else if (!option.isChecked) {
+      this.removeFromModel(existingModelIndex);
+    }
+    // console.log(this.model)
     this.propagateChange(this.model);
   }
 

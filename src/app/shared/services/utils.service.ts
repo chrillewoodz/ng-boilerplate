@@ -10,7 +10,7 @@ export class Utils {
     return _.findIndex(list, (item) => {
 
       if (!isCaseSensitive) {
-        return obj[key].toLowerCase() === item[key].toLowerCase();
+        return String(obj[key]).toLowerCase() === String(item[key]).toLowerCase();
       }
 
       return obj[key] === item[key];
@@ -22,7 +22,7 @@ export class Utils {
     return _.find(list, (item) => {
 
       if (!isCaseSensitive) {
-        return item[key].toLowerCase() === query.toLowerCase();
+        return String(item[key]).toLowerCase() === String(query).toLowerCase();
       }
 
       return item[key] === query;

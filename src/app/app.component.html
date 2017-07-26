@@ -4,6 +4,13 @@
   <!-- Remove this h1 -->
   <h1>{{title}}</h1>
 
+    <div class="form-control">
+      <select-multiple [(ngModel)]="selectedItems" [options]="options" placeholder="Please select an option" label="test">
+        <ng-template #modelRef let-model>{{model?.label}}</ng-template>
+        <ng-template #optionRef let-option>{{option?.label}}</ng-template>
+      </select-multiple>
+    </div>
+
   <router-outlet></router-outlet>
 </div>
 

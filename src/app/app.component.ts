@@ -10,6 +10,22 @@ export class AppComponent implements OnInit {
 
   public title = 'App works!';
 
+  public options = [
+    {
+      id: 0,
+      label: 'Item 0'
+    },
+    {
+      id: 1,
+      label: 'Item 1'
+    },
+    {
+      id: 2,
+      label: 'Item 2'
+    }
+  ];
+
+
   constructor() {}
 
   ngOnInit() {

@@ -1,15 +1,18 @@
-<!-- TODO: Close on blur -->
-<div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}">
-	<label class="label select-label" [for]="selectId">{{label}}</label>
-	<div>
-		<input class="input" [id]="selectId" (focus)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
-		<ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: model}"></ng-template>
-	</div>
-	<div class="sm-selected-options" [ngClass]="{populated: model?.length}" (click)="toggle()">
-		<ul class="sm-selected-options-list">
-			<li class="sm-selected-options-list-item" *ngFor="let item of model | slice:0:[labelsCap]; let last = last">{{item[optionsLabel]}}<span *ngIf="!last">,</span></li>
-			<li *ngIf="model?.length > labelsCap" class="sm-selected-options-additional"> and {{model?.length - labelsCap}} more</li>
-		</ul>
+<div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}" click-outside (outsideClick)="close()" [exceptions]="[exception]">
+	<div #exception>
+		<div>
+			<label class="label select-label" [for]="selectId">{{label}}</label>
+			<input class="input sm-input" [id]="selectId" (focus)="open()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
+		</div>
+		<div class="sm-selected-options" [ngClass]="{populated: model?.length}" (click)="open()">
+			<ul class="sm-selected-options-list">
+				<li class="sm-selected-options-list-item" *ngFor="let item of model | slice:0:[labelsCap]; let last = last">
+					<!-- Don't break the line here for the span or it'll create a margin to the left -->
+					<ng-template [ngTemplateOutlet]="modelRef" [ngOutletContext]="{$implicit: item}"></ng-template><span *ngIf="!last">,</span>
+				</li>
+				<li *ngIf="model?.length > labelsCap" class="sm-selected-options-additional"> and {{model?.length - labelsCap}} more</li>
+			</ul>
+		</div>
 	</div>
 	<div class="sm-options" [ngClass]="{visible: isOpen}">
 		<ul class="sm-options-list">

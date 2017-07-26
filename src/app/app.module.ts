@@ -1,3 +1,4 @@
+import { SharedModule } from '@modules/shared.module';
 import {NgModule} from '@angular/core';
 import {Http} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
@@ -23,7 +24,8 @@ export function HttpLoaderFactory(http: Http) {
     BrowserAnimationsModule,
     CoreModule,
     ComponentsModule,
-
+    SharedModule,
+    
     // Using HttpLoaderFactory so we can have file based translations
     TranslateModule.forRoot({
       loader: {
