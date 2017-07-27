@@ -36,9 +36,8 @@ export class CheckboxComponent implements ControlValueAccessor {
   propagateChange = (_: any) => {};
   propagateTouched = () => {};
 
-  registerOnChange(fn: () => {}) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
-    console.log(fn);
   }
 
   registerOnTouched(fn: () => {}) {

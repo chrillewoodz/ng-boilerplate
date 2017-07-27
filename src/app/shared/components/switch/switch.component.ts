@@ -32,15 +32,18 @@ export class SwitchComponent implements ControlValueAccessor {
 
   constructor() {}
 
-  propagateChange: any = () => {};
+  propagateChange: any = (_: any) => {};
+  propagateTouched: any = () => {};
+
+  registerOnChange(fn: (_: any) => {}) {
+    this.propagateChange = fn;
+  }
+
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
   writeValue(value) {
     this.checked = value;
   }
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() {}
 }

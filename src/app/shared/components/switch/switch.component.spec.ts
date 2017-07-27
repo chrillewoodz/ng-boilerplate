@@ -16,6 +16,7 @@ describe('SwitchComponent', () => {
   let component: SwitchComponent;
   let fixture: ComponentFixture<SwitchComponent>;
   let input: HTMLInputElement;
+  let spy: any;
 
   beforeEach(() => {
 
@@ -43,11 +44,21 @@ describe('SwitchComponent', () => {
     expect(typeof component.id).toBe('string');
   });
 
-  // it('should update the model when the input value changes', () => {
-  //   expect(input.checked).toBe(input.checked);
-  //   input.click();
-  //   expect(input.checked).toBe(input.checked);
-  // });
+
+  it('should propagate the new value when the value changes', () => {
+
+    spy = spyOn(component, 'propagateChange');
+
+    const checked = input.checked;
+
+    input.click();
+
+    // Expect the value to have changed
+    expect(checked).toBe(!input.checked);
+
+    // Expect the value to have been propagated with the new value
+    expect(component.propagateChange).toHaveBeenCalledWith(input.checked);
+  });
 
   // TODO: Uncomment once https://github.com/angular/angular/issues/12313 is closed
   // it('should not update the model if disabled is true', () => {
