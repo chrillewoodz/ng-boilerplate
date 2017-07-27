@@ -4,7 +4,6 @@ import {RouterTestingModule} from '@angular/router/testing';
 
 import {
   async,
-  ComponentFixtureAutoDetect,
   ComponentFixture,
   TestBed
 } from '@angular/core/testing';
@@ -25,10 +24,7 @@ describe('AppComponent', () => {
           // Add feature module routes here
         ])
       ],
-      declarations: [AppComponent],
-      providers: [
-        {provide: ComponentFixtureAutoDetect, useValue: true}
-      ]
+      declarations: [AppComponent]
     });
 
     fixture = TestBed.createComponent(AppComponent);

@@ -1,6 +1,7 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  ElementRef,
   forwardRef,
   Input
 } from '@angular/core';
@@ -23,32 +24,18 @@ import {CustomValidators} from '@validators/custom-validators';
 })
 
 export class SwitchComponent implements ControlValueAccessor {
-  @Input() disabled: boolean;
+  @Input() disabled = false;
 
-  private _model: boolean;
+  public checked: boolean;
 
   public id: string = Utils.getUniqueID();
 
   constructor() {}
 
-  get model() {
-    return this._model;
-  }
-
-  set model(val) {
-    this._model = val;
-    this.propagateChange(val);
-  }
-
   propagateChange: any = () => {};
 
-  validateFn: any = () => {};
-
   writeValue(value) {
-
-    if (value) {
-      this.model = value;
-    }
+    this.checked = value;
   }
 
   registerOnChange(fn) {

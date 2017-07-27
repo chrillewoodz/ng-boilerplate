@@ -9,7 +9,7 @@ import {Component, OnInit} from '@angular/core';
 export class AppComponent implements OnInit {
 
   public title = 'App works!';
-
+  public test = null;
   public options = [
     {
       id: 0,
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     }
   ];
 
-    public options2 = [...this.options];
+  public options2 = [...this.options];
 
   constructor() {}
 

@@ -3,7 +3,7 @@
     <ng-content></ng-content>
   </label>
   <label class="switch">
-    <input class="checkbox" type="checkbox" [id]="id" [(ngModel)]="model" [ngModelOptions]="{standalone: true}" [disabled]="disabled">
+    <input class="checkbox" type="checkbox" [id]="id" [checked]="checked" [disabled]="disabled" (change)="propagateChange($event.target.checked)">
     <div class="slider"></div>
   </label>
 </div>

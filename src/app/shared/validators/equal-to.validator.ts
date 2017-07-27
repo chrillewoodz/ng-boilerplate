@@ -1,5 +1,6 @@
 import {AbstractControl, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 export const EqualToValidator = (equalControl: AbstractControl): ValidatorFn => {
 
