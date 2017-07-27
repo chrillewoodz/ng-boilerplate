@@ -90,41 +90,11 @@ $checkbox-size: 1.75rem;
   &:checked ~ {
 
     .checkbox-indicator {
-
+      background-color: palette('primary');
+      
       &:after {
         opacity: 1;
         visibility: visible;
-      }
-
-      .checkbox-primary & {
-        background-color: palette('primary');
-      }
-
-      .checkbox-complement & {
-        background-color: palette('complement');
-      }
-
-      .checkbox-success & {
-        background-color: palette('success');
-      }
-
-      .checkbox-warning & {
-        background-color: palette('warning');
-      }
-
-      .checkbox-danger & {
-        background-color: palette('danger');
-      }
-
-      .checkbox-neutral & {
-        background-color: palette('neutral');
-      }
-
-      .checkbox-inverted & {
-
-        &:after {
-          color: palette('primary');
-        }
       }
     }
   }

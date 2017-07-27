@@ -1,4 +1,14 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
+
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {Utils} from '@services/utils.service';
@@ -10,47 +20,33 @@ import {Utils} from '@services/utils.service';
   providers: [
     {provide: NG_VALUE_ACCESSOR, useExisting: forwardRef(() => CheckboxComponent), multi: true}
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CheckboxComponent implements ControlValueAccessor, OnInit {
+export class CheckboxComponent implements ControlValueAccessor {
   @Input() disabled = false;
   @Input() size = 'md';
-  @Input() theme = 'primary';
   @Input() float = 'left';
 
-  public id: string;
-
-  private _model: boolean;
+  public id: string = Utils.getUniqueID();
+  public checked: boolean;
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  set model(val) {
-    this._model = val;
-    this.propagateChange(this._model);
-  }
-
-  get model() {
-    return this._model;
-  }
-
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: () => {}) {
     this.propagateChange = fn;
+    console.log(fn);
   }
 
-  registerOnTouched() {}
-
-  writeValue(value: any) {
-
-    if (value !== undefined) {
-      this.model = value;
-      this.cd.markForCheck();
-    }
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
   }
 
-  ngOnInit() {
-    this.id = Utils.getUniqueID();
+  writeValue(value) {
+    this.checked = value;
+    this.cd.markForCheck();
   }
 }

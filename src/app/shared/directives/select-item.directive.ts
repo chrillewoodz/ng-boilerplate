@@ -19,7 +19,7 @@ export class SelectItemDirective {
 
     const i: number = this.selected.indexOf(this.item[this.keyToPush]);
 
-    if (i === -1 && this.host.model) {
+    if (i === -1 && this.host.checked) {
       this.selected.push(this.item[this.keyToPush]);
     }
     else {

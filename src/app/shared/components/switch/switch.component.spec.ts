@@ -38,20 +38,16 @@ describe('SwitchComponent', () => {
     expect(component).toBeTruthy();
   }));
 
-  it('should have a default model value of false', () => {
-    expect(input.checked).toBe(false);
-  });
-
-  it('should generate a unique id using the Utils service', () => {
+  it('should have a unique id of type string', () => {
     expect(component.id).toBeDefined();
     expect(typeof component.id).toBe('string');
   });
 
-  it('should update the model when the input value changes', () => {
-    expect(input.checked).toBe(input.checked);
-    input.click();
-    expect(input.checked).toBe(input.checked);
-  });
+  // it('should update the model when the input value changes', () => {
+  //   expect(input.checked).toBe(input.checked);
+  //   input.click();
+  //   expect(input.checked).toBe(input.checked);
+  // });
 
   // TODO: Uncomment once https://github.com/angular/angular/issues/12313 is closed
   // it('should not update the model if disabled is true', () => {
