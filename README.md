@@ -104,7 +104,6 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 - `Cookies`, provides a fallback option for when `localStorage` isn't available on a device. Such as privacy mode in Safari on mobile devices.
 - `ClientStorage`, automatically fallbacks to cookies if `localStorage` isn't available. This is what you will use most of the times rather than calling `localStorage` or `Cookies`. It also automatically stringifies and parse your data so you don't have to worry about it every time.
 - `StorageLogger`, when storing data via this service it will also expose an `Observable` which you can subscribe to in order to react to changes to `localStorage` or cookies.
-- `Utils`, a static service which exposes a set of useful functions such as `findObjectIndex`, `findObjectByQuery` and `getUniqueID` and more.
 - `DateService`, a service which contains useful functions for working with dates. Currently only filled with a function for providing locale data for the PrimeNG datepicker.
 
 **Got a service request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
@@ -144,6 +143,8 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 - `EqualToValidator`, validates that a value is equal to another value.
 - `FieldsEqualValidator`, is applied to a form group and validates whether all fields have an equal value.
 
+### Other (`@shared/*`)
+- There are a bunch of useful functions located in `@shared/utils`. Check em out.
 
 # Get access to SASS utils in encapsulated components
 Add `@import './src/assets/styles/utils/_exports';` in your encapsulated component style file to gain access to mixins, functions, variables etc. (Basically everything that is available in the `utils` folder).

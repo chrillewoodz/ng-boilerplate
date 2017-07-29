@@ -1,7 +1,18 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, EventEmitter, forwardRef, Input, Output, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ContentChild,
+  EventEmitter,
+  forwardRef,
+  Input,
+  Output,
+  TemplateRef
+} from '@angular/core';
+
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-import {Utils} from '@services/utils.service';
+import {FindObjectIndex, GetUniqueID} from '@shared/utils';
 
 @Component({
   selector: 'select-multiple',
@@ -31,7 +42,7 @@ export class SelectMultipleComponent implements ControlValueAccessor {
   @Output() queryFn: EventEmitter<any> = new EventEmitter<any>();
 
   public isOpen = false;
-  public selectId: string = Utils.getUniqueID();
+  public selectId: string = GetUniqueID();
 
   private _model: any[] = [];
 
@@ -82,8 +93,8 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     if (this.disabled) {
       return false;
     }
-    console.log(this.model, option, this.uniqueKey);
-    const existingModelIndex = Utils.findObjectIndex(this.model, option, this.uniqueKey);
+
+    const existingModelIndex = FindObjectIndex(this.model, option, this.uniqueKey);
 
     if (existingModelIndex === -1 && option.isChecked) {
       this.addToModel(option);
@@ -101,7 +112,7 @@ export class SelectMultipleComponent implements ControlValueAccessor {
 
     for (const option of this.options) {
 
-      const existingModelIndex = Utils.findObjectIndex(this.model, option, this.uniqueKey);
+      const existingModelIndex = FindObjectIndex(this.model, option, this.uniqueKey);
 
       if (existingModelIndex === -1) {
 
@@ -133,7 +144,7 @@ export class SelectMultipleComponent implements ControlValueAccessor {
   }
 
   isChecked(option: any): boolean {
-    return Utils.findObjectIndex(this.model, option, this.uniqueKey) !== -1;
+    return FindObjectIndex(this.model, option, this.uniqueKey) !== -1;
   }
 
   trackByFn(index, item) {

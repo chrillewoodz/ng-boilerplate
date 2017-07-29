@@ -27,6 +27,7 @@
       "@modules/*": ["app/shared/modules/*"],
       "@pipes/*": ["app/shared/pipes/*"],
       "@services/*": ["app/shared/services/*"],
+      "@shared/*": ["app/shared/*"],
       "@validators/*": ["app/shared/validators/*"]
     }
   }

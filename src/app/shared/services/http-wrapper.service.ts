@@ -13,6 +13,7 @@ import {ClientStorage} from '@services/client-storage.service';
 export class HttpWrapper implements OnDestroy {
 
   constructor(
+    private cs: ClientStorage,
     private http: Http
   ) {}
 
@@ -56,7 +57,7 @@ export class HttpWrapper implements OnDestroy {
   }
 
   createAuthorizationHeader(headers: Headers): void {
-    headers.append('Authorization', `Basic ${ClientStorage.get(AppConstants.token)}`);
+    headers.append('Authorization', `Basic ${this.cs.getItem(AppConstants.token)}`);
   }
 
   get(url: string, params?: any): Observable<Response> {

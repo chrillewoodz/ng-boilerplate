@@ -92,12 +92,20 @@ export class ModalComponent implements OnInit, OnDestroy {
 
     this.statesSubscription = this.modalApi.states$.subscribe(
       (modal: any) => {
-        this.isOpen = modal.id === this.modalId ? modal.isOpen : false;
-        this.currentTemplate = modal.template;
-        this.cd.markForCheck();
 
-        if (!this.isOpen && modal.id === this.modalId) {
-          this.closed.emit(this.modalId);
+        if (modal.id === this.modalId) {
+
+          if (modal.action === 'open') {
+            this.isOpen = true;
+          }
+          else {
+            this.isOpen = false;
+            this.closed.emit(this.modalId);
+          }
+
+          this.currentTemplate = modal.template;
+
+          this.cd.markForCheck();
         }
       }
     );
@@ -115,7 +123,7 @@ export class ModalComponent implements OnInit, OnDestroy {
 
         // If the clicked element is the modal overlay, close the modal
         if (this.overlay.nativeElement === e.target) {
-        this.modalApi.close(this.modalId);
+          this.modalApi.close(this.modalId);
         }
       }
     );

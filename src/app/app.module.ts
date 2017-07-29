@@ -1,5 +1,4 @@
-import { SharedModule } from '@modules/shared.module';
-import {NgModule} from '@angular/core';
+import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {Http} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -10,6 +9,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 
 // App
 import {CoreModule} from './core.module';
+import {SharedModule} from '@modules/shared.module';
 import {ComponentsModule} from '@modules/components.module';
 import {AppRouterModule} from './app-router.module';
 import {AppComponent} from './app.component';
@@ -25,7 +25,7 @@ export function HttpLoaderFactory(http: Http) {
     CoreModule,
     ComponentsModule,
     SharedModule,
-    
+
     // Using HttpLoaderFactory so we can have file based translations
     TranslateModule.forRoot({
       loader: {
@@ -39,7 +39,9 @@ export function HttpLoaderFactory(http: Http) {
   declarations: [
     AppComponent
   ],
-
+  schemas: [
+    NO_ERRORS_SCHEMA
+  ],
   bootstrap: [
     AppComponent
   ]

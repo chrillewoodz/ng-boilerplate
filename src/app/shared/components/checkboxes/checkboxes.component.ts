@@ -10,7 +10,7 @@ import {
 
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-import {Utils} from '@services/utils.service';
+import {FindObjectIndex} from '@shared/utils';
 
 @Component({
   selector: 'checkboxes',
@@ -54,7 +54,7 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
 
   selectOption(option) {
 
-    const i: number = Utils.findObjectIndex(this.model, option, this.uniqueKey);
+    const i: number = FindObjectIndex(this.model, option, this.uniqueKey);
 
     if (i === -1) {
       this.model.push(option);

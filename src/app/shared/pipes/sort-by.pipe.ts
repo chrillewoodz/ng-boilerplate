@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+import * as _ from 'lodash';
 
 @Pipe({
   name: 'sortBy'
@@ -6,29 +7,18 @@ import {Pipe, PipeTransform} from '@angular/core';
 
 export class SortByPipe implements PipeTransform {
 
-  transform(value: any, args: any[]) {
+  transform(items: any, args: any[]) {
 
-    const copy = value.slice();
+    const copy = items.slice();
     const property = args[0];
-    const direction: string = args[1] || 'ASC';
+    const direction: string = args[1] ? args[1].toLowerCase() : 'asc';
 
     if (!property) {
       return copy;
     }
     else if (copy) {
-
-      return copy.sort((a: any, b: any) => {
-
-        if (direction === 'ASC') {
-          return (a[property] > b[property]) ? 1 : ((b[property] > a[property]) ? -1 : 0);
-        }
-        else if (direction === 'DESC') {
-          return (a[property] < b[property]) ? 1 : ((b[property] < a[property]) ? -1 : 0);
-        }
-        else {
-          return (a[property] > b[property]) ? 1 : ((b[property] > a[property]) ? -1 : 0);
-        }
-      });
+      console.log(_.orderBy(items, property, direction));
+      return _.orderBy(items, property, direction);
     }
   }
 }

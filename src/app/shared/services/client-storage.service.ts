@@ -6,33 +6,35 @@ import {Cookies} from '@services/cookies.service';
 
 export class ClientStorage {
 
-  public static get(k: string): any {
+  constructor(private cookies: Cookies) {}
+
+  getItem(k: string): any {
 
     try {
       return JSON.parse(localStorage.getItem(k));
     }
     catch (err) {
-      return JSON.parse(Cookies.getItem(k));
+      return JSON.parse(this.cookies.getItem(k));
     }
   }
 
-  public static set(k: string, v: any): void {
+  setItem(k: string, v: any): void {
 
     try {
       localStorage.setItem(k, JSON.stringify(v));
     }
     catch (err) {
-      Cookies.setItem(k, JSON.stringify(v));
+      this.cookies.setItem(k, JSON.stringify(v));
     }
   }
 
-  public static remove(k): void {
+  removeItem(k): void {
 
     try {
       localStorage.removeItem(k);
     }
     catch (err) {
-      Cookies.removeItem(k);
+      this.cookies.removeItem(k);
     }
   }
 }

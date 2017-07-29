@@ -11,7 +11,7 @@ import {
 
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-import {Utils} from '@services/utils.service';
+import {GetUniqueID} from '@shared/utils';
 
 @Component({
   selector: 'checkbox',
@@ -28,7 +28,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() size = 'md';
   @Input() float = 'left';
 
-  public id: string = Utils.getUniqueID();
+  public id: string = GetUniqueID();
   public checked: boolean;
 
   constructor(private cd: ChangeDetectorRef) {}

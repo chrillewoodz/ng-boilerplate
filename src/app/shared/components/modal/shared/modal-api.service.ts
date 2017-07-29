@@ -1,31 +1,43 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
+class IModalParams {
+  isOpen?: boolean;
+  id: string;
+  template?: string;
+  action: string;
+}
+
 @Injectable()
 
 export class ModalApi {
 
-  private states = new BehaviorSubject<any>(true);
+  private states = new BehaviorSubject<IModalParams>(null);
 
   public states$ = this.states.asObservable();
 
   constructor() {}
 
-  open(id: string, template?: string): Promise<any> {
+  open(id: string, template?: string): void {
 
-    this.states.next({isOpen: true, id: id, template: template});
+    const args: IModalParams = {
+      isOpen: true,
+      id: id,
+      template: template,
+      action: 'open'
+    };
 
-    return new Promise((resolve, reject) => {
-      resolve({id: id, template: template});
-    });
+    this.states.next(args);
   }
 
-  close(id: string): Promise<any> {
+  close(id: string): void {
 
-    this.states.next({isOpen: false, id: id});
+    const args: IModalParams = {
+      isOpen: false,
+      id: id,
+      action: 'close'
+    };
 
-    return new Promise((resolve, reject) => {
-      resolve({id: id});
-    });
+    this.states.next(args);
   }
 }

@@ -4,7 +4,6 @@ import {Cookies} from '@services/cookies.service';
 import {DateService} from '@services/date.service';
 import {HttpWrapper} from '@services/http-wrapper.service';
 import {StorageLogger} from '@services/storage-logger.service';
-import {Utils} from '@services/utils.service';
 
 export const SERVICES_PROVIDERS: any[] = [
   Api,
@@ -12,6 +11,5 @@ export const SERVICES_PROVIDERS: any[] = [
   Cookies,
   DateService,
   HttpWrapper,
-  StorageLogger,
-  Utils
+  StorageLogger
 ];

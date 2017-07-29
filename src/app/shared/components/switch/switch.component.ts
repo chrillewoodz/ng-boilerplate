@@ -8,8 +8,7 @@ import {
 
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
-// Custom
-import {Utils} from '@services/utils.service';
+import {GetUniqueID} from '@shared/utils';
 import {CustomValidators} from '@validators/custom-validators';
 
 @Component({
@@ -28,7 +27,7 @@ export class SwitchComponent implements ControlValueAccessor {
 
   public checked: boolean;
 
-  public id: string = Utils.getUniqueID();
+  public id: string = GetUniqueID();
 
   constructor() {}
 

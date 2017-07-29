@@ -1,11 +1,11 @@
 import {AbstractControl, Validators, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
-import {Utils} from '@services/utils.service';
+import {IsDefined} from '@shared/utils';
 
 export const Email: ValidatorFn = (control: AbstractControl): {[key: string]: boolean} => {
 
-  if (Utils.isDefined(Validators.required(control))) {
+  if (IsDefined(Validators.required(control))) {
     return null;
   }
 

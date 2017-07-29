@@ -11,22 +11,24 @@ export class StorageLogger {
 
   public logger$ = this.logger.asObservable();
 
+  constructor(private cs: ClientStorage) {}
+
   set(key: string, value: any): void {
 
-    ClientStorage.set(key, value);
+    this.cs.setItem(key, value);
 
     this.get(key);
   }
 
   get(key: string) {
-    this.logger.next({value: ClientStorage.get(key), key: key});
+    this.logger.next({value: this.cs.getItem(key), key: key});
   }
 
   remove(keys: string[]) {
 
     for (const key of keys) {
 
-      ClientStorage.remove(key);
+      this.cs.removeItem(key);
 
       this.logger.next({value: null, key: key});
     }

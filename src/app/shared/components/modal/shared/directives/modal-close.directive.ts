@@ -7,13 +7,12 @@ import {ModalApi} from '../modal-api.service';
 })
 
 export class ModalCloseDirective {
-
-  public modalClose: string;
+  @Input() modalId: string;
 
   constructor(private modalApi: ModalApi) {}
 
   @HostListener('click')
   close(): void {
-    this.modalApi.close(this.modalClose);
+    this.modalApi.close(this.modalId);
   }
 }

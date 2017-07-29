@@ -14,7 +14,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {SelectUtils} from './shared/select-utils.service';
-import {Utils} from '@services/utils.service';
+import {GetUniqueID} from '@shared/utils';
 
 @Component({
   selector: 'custom-select',
@@ -39,7 +39,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
   @Input() placeholder = '';
   @Input() label = '';
 
-  public selectId: string = Utils.getUniqueID();
+  public selectId: string = GetUniqueID();
   public isOpen = false;
   public isDirty: boolean;
 
