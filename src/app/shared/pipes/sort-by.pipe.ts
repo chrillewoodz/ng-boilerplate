@@ -17,8 +17,7 @@ export class SortByPipe implements PipeTransform {
       return copy;
     }
     else if (copy) {
-      console.log(_.orderBy(items, property, direction));
-      return _.orderBy(items, property, direction);
+      return _.orderBy(items, [property], [direction]);
     }
   }
 }
