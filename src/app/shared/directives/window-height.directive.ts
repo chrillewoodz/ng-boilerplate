@@ -13,7 +13,7 @@ export class WindowHeightDirective implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   setHeight() {
-    this.height = (this.isActive ? window.innerHeight : null) - this.offset;
+    this.height = this.isActive ? (window.innerHeight - this.offset) : undefined;
   }
 
   constructor() {}
