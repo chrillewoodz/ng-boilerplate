@@ -6,27 +6,27 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 
 export class UrlToBackgroundDirective {
-  @Input() set url(value) {
-    this.setUrl(value);
+  @Input('urlToBackground') set backgroundUrl(backgroundUrl) {
+    this.setUrl(backgroundUrl);
   }
 
-  get url() {
-    return this._url;
+  get backgroundUrl() {
+    return this._backgroundUrl;
   }
 
-  constructor(private sanitizer: DomSanitizer) {}
-
-  private _url: string;
+  private _backgroundUrl: string;
 
   @HostBinding('style.background-image')
   background: any;
 
-  setUrl(url: string): void {
+  constructor(private sanitizer: DomSanitizer) {}
 
-    this._url = url;
+  setUrl(backgroundUrl: string): void {
 
-    if (this.url) {
-      this.background = this.sanitizer.bypassSecurityTrustStyle(`url(${this.url})`);
+    this._backgroundUrl = backgroundUrl;
+
+    if (this.backgroundUrl) {
+      this.background = this.sanitizer.bypassSecurityTrustStyle(`url(${backgroundUrl})`);
     }
     else {
       this.background = '';

@@ -3,13 +3,13 @@ import {NavigationEnd, Router} from '@angular/router';
 import 'rxjs/add/operator/filter';
 
 @Directive({
-  selector: '[isPage]'
+  selector: '[isRoute]'
 })
 
-export class IsPageDirective implements OnInit {
-  @Input() url: string;
+export class IsRouteDirective implements OnInit {
+  @Input('isRoute') route: string;
 
-  @HostBinding('class.is-page') isPage = false;
+  @HostBinding('class.is-route') isRoute = false;
 
   constructor(private router: Router) {}
 
@@ -18,7 +18,8 @@ export class IsPageDirective implements OnInit {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe((event: NavigationEnd) => {
-        this.isPage = event.url === this.url;
+        this.isRoute = event.url === this.route;
+        console.log(this.isRoute)
       }
     );
   }
