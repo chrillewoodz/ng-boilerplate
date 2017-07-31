@@ -122,9 +122,9 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 
 ### Directives (`@directives/*`)
 - `WindowHeightDirective`/`windowHeight`, gets the window height and continously applies it to the host element every time the window resizes (with a debounce function so it's efficient).
-- `UrlToBackgroundDirective`/`urlToBackground`, takes an url (`urlToBackground url="https://google.com/funny-looking-duck.png"`) and turns it into an element background (**not** an `img` tag). Can be combined with `bg-center` CSS class to create a background which is centered fast.
+- `UrlToBackgroundDirective`/`urlToBackground`, takes an url (`urlToBackground="https://google.com/funny-looking-duck.png"`) and turns it into an element background (**not** an `img` tag). Can be combined with `bg-center` CSS class to create a background which is centered fast.
 - `BackgroundLoadedDirective`/`backgroundLoaded`, exposes a `(loaded)` event listener for when a background is loaded. Can be used to ease in elements once they've finished loading for a smoother user experience. 
-- `IsPageDirective`/`isPage`, takes a route url and compares it to the current route to see if it's the same page. If it is, it will apply an `is-page` class to the host element.
+- `IsRouteDirective`/`isRoute`, takes a route url (`isRoute="some-route"`) and compares it to the current route to see if it's the same route. If it is, it will apply an `is-route` class to the host element.
 - `ClickOutsideDirective`/`clickOutside`, listens for clicks outside of the host element. Accepts a list of `exceptions` which is a list of HTML elements (use local template variables and pass those in). Exposes `(outsideClick)` for when a click outside was made.
 - `SelectItem`/`selectItem`, is applied to the `CheckboxComponent` (`<checkbox selectItem></checkbox>`). It will listen for changes to `ngModel` and add or remove it to a list of `selected` items.
 - `SelectAll`/`selectAll`, is applied to any clickable element and takes an `items` list as an input and toggles a specific property in each item depending on if one or more of them is `false` and vice versa. Combine with `SelectItem` if you have a list of items which each has a checkbox, for example. 
