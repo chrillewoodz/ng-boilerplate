@@ -1,6 +1,5 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
-import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
@@ -22,7 +21,7 @@ export class HttpWrapper implements OnDestroy {
 
   convertJSONtoParams(json: any): HttpParams {
 
-    const params: HttpParams = new HttpParams();
+    let params: HttpParams = new HttpParams();
 
     for (const key in json) {
 
@@ -32,7 +31,7 @@ export class HttpWrapper implements OnDestroy {
           continue;
         }
         else {
-          params.set(key, json[key]);
+          params = params.append(key, String(json[key]));
         }
       }
     }
@@ -42,9 +41,9 @@ export class HttpWrapper implements OnDestroy {
 
   getRequestOptions(params?: any): any {
 
-    const headers = new HttpHeaders();
+    let headers = new HttpHeaders();
 
-    headers.set('Content-Type', 'application/json');
+    headers = headers.set('Content-Type', 'application/json');
 
     return {
       headers: headers,

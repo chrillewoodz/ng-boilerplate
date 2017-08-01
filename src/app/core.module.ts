@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {DatePipe} from '@angular/common';
-import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 
 // Providers
@@ -11,7 +11,7 @@ import {SERVICES_PROVIDERS} from '@services/providers';
 
 @NgModule({
   imports: [
-    HttpModule
+    HttpClientModule
   ],
   exports: [
     RouterModule
