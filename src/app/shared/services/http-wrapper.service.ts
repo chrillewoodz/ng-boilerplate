@@ -1,6 +1,5 @@
-import { CustomResponse } from '@interfaces/custom-response.interface';
 import {Injectable, OnDestroy} from '@angular/core';
-import {HttpClient, HttpEvent, HttpParams, HttpResponse} from '@angular/common/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
@@ -43,9 +42,9 @@ export class HttpWrapper implements OnDestroy {
 
   getRequestOptions(params?: any): any {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
 
-    headers.append('Content-Type', 'application/json');
+    headers.set('Content-Type', 'application/json');
 
     return {
       headers: headers,
