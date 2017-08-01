@@ -16,6 +16,7 @@ describe('BackgroundLoadedDirective', () => {
 
   let component: UnitTestComponent;
   let fixture: ComponentFixture<UnitTestComponent>;
+  let debugElement: HTMLDivElement;
   let spy: jasmine.Spy;
 
   beforeEach(() => {
@@ -33,6 +34,7 @@ describe('BackgroundLoadedDirective', () => {
 
     fixture = TestBed.createComponent(UnitTestComponent);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement.query(By.directive(BackgroundLoadedDirective)).nativeElement;
   });
 
   it('should create a fake img tag', () => {
@@ -47,7 +49,7 @@ describe('BackgroundLoadedDirective', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should emit the loaded output once the img is loaded', async(() => {
+  it('should emit the loaded output once the img is loaded', () => {
 
     spy = spyOn(component, 'loaded').and.callThrough();
 
@@ -55,13 +57,23 @@ describe('BackgroundLoadedDirective', () => {
     component.backgroundLoaded.img.onload(null);
 
     expect(spy).toHaveBeenCalled();
-  }));
+  });
 
-  it('should set isLoaded to true once the img is loaded', async(() => {
+  it('should set isLoaded to true once the img is loaded', () => {
 
     // Need to call this manually or it will have fired too soon
     component.backgroundLoaded.img.onload(null);
 
     expect(component.backgroundLoaded.isLoaded).toBe(true);
-  }));
+  });
+
+  it('should set a background-loaded class when isLoading is true', () => {
+
+    // Need to call this manually or it will have fired too soon
+    component.backgroundLoaded.img.onload(null);
+
+    fixture.detectChanges();
+
+    expect(debugElement.classList.contains('background-loaded')).toBe(true);
+  });
 });
