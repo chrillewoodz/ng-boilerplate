@@ -1,4 +1,4 @@
-<div class="dropdown-wrapper" [ngClass]="{open: isOpen, disabled: disabled}" (outsideClick)="close()" [exceptions]="[toggler]">
+<div class="dropdown-wrapper" [ngClass]="{open: isOpen, disabled: disabled}" (clickOutside)="close()" [exceptions]="[toggler]">
   <header class="dropdown-header">
 		<button #toggler class="btn btn-sm btn-neutral dropdown-toggle" type="button" (click)="toggle()">
       <ng-content></ng-content>

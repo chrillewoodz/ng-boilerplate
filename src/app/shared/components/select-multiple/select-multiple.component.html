@@ -1,4 +1,4 @@
-<div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}" click-outside (outsideClick)="close()" [exceptions]="[exception]">
+<div #select class="sm-control" [ngClass]="{open: isOpen, disabled: disabled}" (clickOutside)="close()" [exceptions]="[exception]">
 	<div #exception>
 		<div>
 			<label class="label select-label" *ngIf="label" [for]="selectId">{{label}}</label>
