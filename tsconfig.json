@@ -23,6 +23,7 @@
       "@constants/*": ["app/shared/constants/*"],
       "@directives/*": ["app/shared/directives/*"],
       "@guards/*": ["app/shared/guards/*"],
+      "@interceptors/*": ["app/shared/interceptors/*"],
       "@interfaces/*": ["app/shared/interfaces/*"],
       "@modules/*": ["app/shared/modules/*"],
       "@pipes/*": ["app/shared/pipes/*"],
