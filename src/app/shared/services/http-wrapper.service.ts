@@ -1,5 +1,6 @@
 import {Injectable, OnDestroy} from '@angular/core';
-import {Http, Headers, Response, RequestOptions, URLSearchParams} from '@angular/http';
+import {HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse} from '@angular/common/http';
+import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/observable/of';
@@ -9,21 +10,19 @@ import {ClientStorage} from '@services/client-storage.service';
 
 @Injectable()
 
-/* Wrapper for Angular's Http class, let's us provide headers and other things on every request */
+/* Wrapper for Angular's HttpClient class, let's us provide headers and other things on every request */
 export class HttpWrapper implements OnDestroy {
 
   constructor(
     private cs: ClientStorage,
-    private http: Http
+    private http: HttpClient
   ) {}
 
-  ngOnDestroy() {
+  ngOnDestroy() {}
 
-  }
+  convertJSONtoParams(json: any): HttpParams {
 
-  convertJSONtoParams(json: any): URLSearchParams {
-
-    const params: URLSearchParams = new URLSearchParams();
+    const params: HttpParams = new HttpParams();
 
     for (const key in json) {
 
@@ -41,71 +40,43 @@ export class HttpWrapper implements OnDestroy {
     return params;
   }
 
-  getRequestOptions(params?: any): RequestOptions {
+  getRequestOptions(params?: any): any {
 
-    const headers = new Headers();
+    const headers = new HttpHeaders();
 
-    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    headers.append('Content-Type', 'application/json');
+    headers.set('Content-Type', 'application/json');
 
-    this.createAuthorizationHeader(headers);
-
-    return new RequestOptions({
+    return {
       headers: headers,
-      search: params ? this.convertJSONtoParams(params) : null
-    });
+      params: params ? this.convertJSONtoParams(params) : null
+    };
   }
 
-  createAuthorizationHeader(headers: Headers): void {
-    headers.append('Authorization', `Basic ${this.cs.getItem(AppConstants.token)}`);
+  get<T>(url: string, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.get<T>(AppConstants.host + url, this.getRequestOptions(params));
   }
 
-  get(url: string, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.get(AppConstants.host + url, options);
+  post<T>(url: string, data: any, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.post<T>(AppConstants.host + url, data, this.getRequestOptions(params));
   }
 
-  post(url: string, data: any, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.post(AppConstants.host + url, data, options);
+  put<T>(url: string, data: any, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.put<T>(AppConstants.host + url, data, this.getRequestOptions(params));
   }
 
-  put(url: string, data: any, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.put(AppConstants.host + url, data, options);
+  delete<T>(url: string, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.delete<T>(AppConstants.host + url, this.getRequestOptions(params));
   }
 
-  delete(url: string, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.delete(AppConstants.host + url, options);
+  patch<T>(url: string, data: any, params?: {[key: string]: any}): Observable<HttpEvent<T>>{
+    return this.http.patch<T>(AppConstants.host + url, data, this.getRequestOptions(params));
   }
 
-  patch(url: string, data: any, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.patch(AppConstants.host + url, data, options);
+  head<T>(url: string, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.head<T>(AppConstants.host + url, this.getRequestOptions(params));
   }
 
-  head(url: string, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.head(AppConstants.host + url, options);
-  }
-
-  options(url: string, params?: any): Observable<Response> {
-
-    const options: RequestOptions = this.getRequestOptions(params);
-
-    return this.http.options(AppConstants.host + url, options);
+  options<T>(url: string, params?: {[key: string]: any}): Observable<HttpEvent<T>> {
+    return this.http.options<T>(AppConstants.host + url, this.getRequestOptions(params));
   }
 }

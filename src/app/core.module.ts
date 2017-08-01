@@ -6,6 +6,7 @@ import {RouterModule} from '@angular/router';
 // Providers
 import {COMPONENTS_PROVIDERS} from '@components/providers';
 import {GUARDS_PROVIDERS} from '@guards/providers';
+import {INTERCEPTORS_PROVIDERS} from '@interceptors/providers';
 import {SERVICES_PROVIDERS} from '@services/providers';
 
 @NgModule({
