@@ -19,7 +19,6 @@ export class IsRouteDirective implements OnInit {
       .filter(event => event instanceof NavigationEnd)
       .subscribe((event: NavigationEnd) => {
         this.isRoute = event.url === this.route;
-        console.log(this.isRoute)
       }
     );
   }
