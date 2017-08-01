@@ -16,22 +16,26 @@ export class BackgroundLoadedDirective {
     return this._url;
   }
 
-  @Output() load: EventEmitter<any> = new EventEmitter<any>();
+  @Output() loaded: EventEmitter<any> = new EventEmitter<any>();
+
+  public img: HTMLImageElement;
 
   private _url: string;
 
   @HostBinding('class.background-loaded')
-  isLoaded: boolean = false;
+  isLoaded = false;
 
   createImage(url: string): void {
 
-    let img = new Image();
+    this._url = url;
 
-    img.onload = () => {
+    this.img = new Image();
+
+    this.img.onload = () => {
       this.isLoaded = true;
-      this.load.emit(url);
+      this.loaded.emit(url);
     };
 
-    img.src = url;
+    this.img.src = url;
   }
 }

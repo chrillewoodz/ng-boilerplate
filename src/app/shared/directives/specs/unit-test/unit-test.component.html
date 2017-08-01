@@ -1,1 +1,6 @@
-<div [urlToBackground]="url" windowHeight isRoute="test"></div>
+<div class="false" [urlToBackground]="url" windowHeight isRoute="test" backgroundLoaded [url]="url" (loaded)="loaded($event)"></div>
+
+<button #clickOutsideException class="click-outside-exception" type="button">I'm an exception that should not trigger an outside click</button>
+<div (clickOutside)="outsideClicked()" [exceptions]="[clickOutsideException]">
+  <div class="click-outside-content">I am content that should not trigger an outside click</div>
+</div>

@@ -1,73 +1,59 @@
-import {AfterContentInit, ContentChildren, Directive, Input, Output, OnInit, ElementRef, EventEmitter, Renderer, OnDestroy, QueryList} from '@angular/core';
+import {
+  AfterContentInit,
+  ContentChildren,
+  Directive,
+  HostListener,
+  Input,
+  Output,
+  OnInit,
+  ElementRef,
+  EventEmitter,
+  OnDestroy,
+  Renderer,
+  QueryList
+} from '@angular/core';
+
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import 'rxjs/add/operator/debounceTime';
 
 @Directive({
-  selector: '[outsideClick]'
+  selector: '[clickOutside]'
 })
 
-export class ClickOutsideDirective implements AfterContentInit, OnDestroy, OnInit {
+export class ClickOutsideDirective {
   @Input() exceptions: QueryList<HTMLElement>;
-  @Output() outsideClick: EventEmitter<any> = new EventEmitter();
+  @Output() clickOutside: EventEmitter<any> = new EventEmitter();
 
-  documentSubject = new Subject();
-  documentSubscription: Subscription;
-  documentClickHandler: any;
-  documentTouchHandler: any;
+  @HostListener('document:click', ['$event'])
+  documentClick(e: MouseEvent) {
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer) {}
+    e.stopPropagation();
 
-  ngAfterContentInit() {
+    if (!this.exceptions) {
 
-    this.documentClickHandler = this.renderer.listenGlobal('document', 'click', (e: MouseEvent) => {
-      this.documentSubject.next(e);
-    });
+      // If host element or any of its children isn't clicked while there are no exceptions defined, run the callback
+      if (!this.isHostClicked(e)) {
+        this.clickOutside.emit();
+      }
 
-    this.documentTouchHandler = this.renderer.listenGlobal('document', 'touchend', (e: MouseEvent) => {
-      this.documentSubject.next(e);
-    });
+      return;
+    }
+    else {
 
-    this.documentSubscription = this.documentSubject.debounceTime(100).subscribe(
-      (e: MouseEvent) => {
+      if (this.isExceptionClicked(e)) {
+        return;
+      }
+      else {
 
-        e.stopPropagation();
-
-        if (!this.exceptions) {
-
-          // If host element or any of its children isn't clicked while there are no exceptions defined, run the callback
-          if (!this.isHostClicked(e)) {
-            this.outsideClick.emit();
-          }
-
-          return false;
-        }
-        else {
-
-          if (this.isExceptionClicked(e)) {
-            return false;
-          }
-          else {
-
-            if (!this.isHostClicked(e)) {
-              this.outsideClick.emit();
-            }
-          }
+        if (!this.isHostClicked(e)) {
+          this.clickOutside.emit();
         }
       }
-    );
+    }
   }
 
-  ngOnInit() {
-
-
-  }
-
-  ngOnDestroy() {
-    this.documentClickHandler();
-    this.documentTouchHandler();
-    this.documentSubscription.unsubscribe();
-  }
+  constructor(private elementRef: ElementRef) {}
 
   isHostClicked(e: MouseEvent): boolean {
 

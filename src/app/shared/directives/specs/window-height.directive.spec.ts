@@ -18,6 +18,7 @@ describe('WindowHeightDirective', () => {
   let directive: WindowHeightDirective;
   let fixture: ComponentFixture<UnitTestComponent>;
   let debugElement: HTMLDivElement;
+  let spy: jasmine.Spy;
 
   beforeEach(() => {
 
@@ -48,7 +49,7 @@ describe('WindowHeightDirective', () => {
 
     const simulatedHeight = '500px';
 
-    const spy = spyOn(directive, 'setHeight').and.callFake(() => {
+    spy = spyOn(directive, 'setHeight').and.callFake(() => {
       debugElement = fixture.debugElement.query(By.directive(WindowHeightDirective)).nativeElement;
 
       // Simulate that the window was changed to 500px high
@@ -71,7 +72,7 @@ describe('WindowHeightDirective', () => {
 
     // Important to call .and.callThrough() here or `directive.isActive = false;`
     // won't take effect
-    const spy = spyOn(directive, 'setHeight').and.callThrough();
+    spy = spyOn(directive, 'setHeight').and.callThrough();
 
     window.dispatchEvent(new Event('resize'));
 
@@ -89,7 +90,7 @@ describe('WindowHeightDirective', () => {
 
     fixture.detectChanges();
 
-    const spy = spyOn(directive, 'setHeight').and.callThrough();
+    spy = spyOn(directive, 'setHeight').and.callThrough();
 
     window.dispatchEvent(new Event('resize'));
 
