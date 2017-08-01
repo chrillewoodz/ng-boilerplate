@@ -99,8 +99,8 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 
 
 ### Services (`@services/*`)
-- `HttpWrapper`, wraps Angular's `Http` and allows you to add headers, params and data for each request that is made from your app.
-- `Api`, wraps `HttpWrapper` and makes requests relative to a certain domain. This service is used for making calls to the applications's backend API. External http resources should be called with `Http` directly.
+- `HttpWrapper`, wraps Angular's `HttpClient` and allows you to add headers, params and data for each request that is made from your app.
+- `Api`, wraps `HttpWrapper` and makes requests relative to a certain domain. This service is used for making calls to the applications's backend API. External http resources should be called with `HttpWrapper` directly.
 - `Cookies`, provides a fallback option for when `localStorage` isn't available on a device. Such as privacy mode in Safari on mobile devices.
 - `ClientStorage`, automatically fallbacks to cookies if `localStorage` isn't available. This is what you will use most of the times rather than calling `localStorage` or `Cookies`. It also automatically stringifies and parse your data so you don't have to worry about it every time.
 - `StorageLogger`, when storing data via this service it will also expose an `Observable` which you can subscribe to in order to react to changes to `localStorage` or cookies.
@@ -108,6 +108,11 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 
 **Got a service request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
+### Interceptors (`@interceptors/*`)
+- `JWTInterceptor`, adds the stored jwt token for every request.
+- `ErrorInterceptor`, intercepts http errors and redirects to `/login` for `401` responses as well as clearing token.
+
+**Got an interceptor request? Please open an issue and be as specific as possible with the behavior, requirements etc.**
 
 ### Pipes (`@pipes/*`)
 - `CapitalizePipe`/`capitalize`, the first letter of the value (not each word)
@@ -121,10 +126,10 @@ A lot of these components have additional APIs, directives, pipes etc. which can
 
 ### Directives (`@directives/*`)
 - `WindowHeightDirective`/`windowHeight`, gets the window height and continously applies it to the host element every time the window resizes (with a debounce function so it's efficient).
-- `UrlToBackgroundDirective`/`urlToBackground`, takes an url (`urlToBackground url="https://google.com/funny-looking-duck.png"`) and turns it into an element background (**not** an `img` tag). Can be combined with `bg-center` CSS class to create a background which is centered fast.
+- `UrlToBackgroundDirective`/`urlToBackground`, takes an url (`urlToBackground="https://google.com/funny-looking-duck.png"`) and turns it into an element background (**not** an `img` tag). Can be combined with `bg-center` CSS class to create a background which is centered fast.
 - `BackgroundLoadedDirective`/`backgroundLoaded`, exposes a `(loaded)` event listener for when a background is loaded. Can be used to ease in elements once they've finished loading for a smoother user experience. 
-- `IsPageDirective`/`isPage`, takes a route url and compares it to the current route to see if it's the same page. If it is, it will apply an `is-page` class to the host element.
-- `ClickOutsideDirective`/`clickOutside`, listens for clicks outside of the host element. Accepts a list of `exceptions` which is a list of HTML elements (use local template variables and pass those in). Exposes `(outsideClick)` for when a click outside was made.
+- `IsRouteDirective`/`isRoute`, takes a route url (`isRoute="some-route"`) and compares it to the current route to see if it's the same route. If it is, it will apply an `is-route` class to the host element.
+- `ClickOutsideDirective`/`clickOutside`, listens for clicks outside of the host element. Accepts a list of `exceptions` which is a list of HTML elements (use local template variables and pass those in). Usage: `(clickOutside)="close()"`.
 - `SelectItem`/`selectItem`, is applied to the `CheckboxComponent` (`<checkbox selectItem></checkbox>`). It will listen for changes to `ngModel` and add or remove it to a list of `selected` items.
 - `SelectAll`/`selectAll`, is applied to any clickable element and takes an `items` list as an input and toggles a specific property in each item depending on if one or more of them is `false` and vice versa. Combine with `SelectItem` if you have a list of items which each has a checkbox, for example. 
 
@@ -163,7 +168,7 @@ Add `@import './src/assets/styles/utils/_exports';` in your encapsulated compone
 - After you have created a new file, add it as an `@import` statement in the folder's `_exports.scss` file.
 
 ### How can I get familiar with the components and how they work?
-- Either look directly at the written code to see what inputs are supported and also what APIs, directives etc. that are available for that component, or take a look at each components documentation file (`README.md`).
+- Either look directly at the written code to see what inputs are supported and also what APIs, directives etc. that are available for that component, or take a look at each components documentation file (`DOCUMENTATION.md`).
 
 ### Are these real frequently asked questions? 
 - No.
