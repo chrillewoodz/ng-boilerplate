@@ -25,9 +25,7 @@
         "../node_modules/primeng/resources/themes/omega/theme.css",
         "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
-      "scripts": [
-        "../node_modules/primeng/primeng.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
@@ -55,9 +53,7 @@
         "../node_modules/primeng/resources/themes/omega/theme.css",
         "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
-      "scripts": [
-        "../node_modules/primeng/primeng.js"
-      ],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
