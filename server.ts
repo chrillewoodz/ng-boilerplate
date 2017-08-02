@@ -29,10 +29,11 @@ import 'zone.js/dist/zone-node';
 import {platformServer, renderModuleFactory} from '@angular/platform-server';
 import {enableProdMode} from '@angular/core';
 import * as express from 'express';
-import {readFileSync} from 'fs';
-import {join} from 'path';
+// import {readFileSync} from 'fs';
+// import {join} from 'path';
 
 const fs = require('fs');
+const path = require('path');
 
 const files = fs.readdirSync(`${process.cwd()}/dist-server`);
 const mainFiles = files.filter(file => file.startsWith('main'));
@@ -45,7 +46,7 @@ enableProdMode();
 
 const app = express();
 
-const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
+const template = fs.readFileSync(path.join(__dirname, '..', 'dist', 'index.html')).toString();
 
 app.engine('html', (_, options, callback) => {
 
@@ -58,7 +59,7 @@ app.engine('html', (_, options, callback) => {
 app.set('view engine', 'html');
 app.set('views', 'src');
 
-app.get('*.*', express.static(join(__dirname, '..', 'dist')));
+app.get('*.*', express.static(path.join(__dirname, '..', 'dist')));
 
 app.get('*', (req, res) => {
   res.render('index', { req });
