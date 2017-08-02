@@ -29,5 +29,9 @@
       "@services/*": ["app/shared/services/*"],
       "@validators/*": ["app/shared/validators/*"]
     }
+  },
+  "angularCompilerOptions": {
+    "genDir": "./dist/ngfactory",
+    "entryModule": "./src/app/app.module#AppModule"
   }
 }

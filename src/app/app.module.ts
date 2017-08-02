@@ -12,7 +12,6 @@ import {CoreModule} from './core.module';
 import {ComponentsModule} from '@modules/components.module';
 import {AppRouterModule} from './app-router.module';
 import {AppComponent} from './app.component';
-
 import {AppConstants} from '@constants/app-constants.constant';
 
 export function HttpLoaderFactory(http: Http) {
@@ -21,7 +20,7 @@ export function HttpLoaderFactory(http: Http) {
 
 @NgModule({
   imports: [
-    BrowserModule.withServerTransition({appId: `${AppConstants.prefix}`}),
+    BrowserModule.withServerTransition({appId: `${AppConstants.prefix}.appId`}),
     BrowserAnimationsModule,
     CoreModule,
     ComponentsModule,
