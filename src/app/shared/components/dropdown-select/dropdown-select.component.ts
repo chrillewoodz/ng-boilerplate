@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, ChangeDetectionStrategy, Component, ContentChild, forwardRef, Input, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  forwardRef,
+  Input,
+  TemplateRef
+} from '@angular/core';
+
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 @Component({
@@ -38,14 +47,17 @@ export class DropdownSelectComponent implements ControlValueAccessor {
   constructor(private cd: ChangeDetectorRef) {}
 
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
-  writeValue(value: any) {
+  writeValue<T>(value: T) {
 
     if (value !== undefined) {
       this.model = value;
@@ -53,10 +65,6 @@ export class DropdownSelectComponent implements ControlValueAccessor {
     }
   }
 
-  /* Toggles the dropdown
-   *
-   * @returns {Boolean} [false if the dropdown is disabled]
-   */
   toggle(): boolean {
 
     if (this.disabled) {
@@ -69,10 +77,6 @@ export class DropdownSelectComponent implements ControlValueAccessor {
     this.isOpen = !this.isOpen;
   }
 
-  /* Closes the dropdown
-   *
-   * @returns {Void}
-   */
   close(): void {
 
     this.isOpen = false;
@@ -80,7 +84,7 @@ export class DropdownSelectComponent implements ControlValueAccessor {
     this.cd.markForCheck();
   }
 
-  select(option: any): void {
+  select<O>(option: O): void {
 
     this.model = option;
 
@@ -89,7 +93,7 @@ export class DropdownSelectComponent implements ControlValueAccessor {
     this.close();
   }
 
-  trackByFn(i: number, item) {
+  trackByFn<T>(i: number, item: T): string|number {
     return item[this.uniqueKey];
   }
 }
