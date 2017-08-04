@@ -3,11 +3,8 @@ import {
   ChangeDetectorRef,
   Component,
   ContentChild,
-  ElementRef,
   EventEmitter,
-  HostListener,
   Input,
-  OnInit,
   Output,
   TemplateRef
 } from '@angular/core';
@@ -33,7 +30,7 @@ export class DataListComponent {
     this._items = items;
   }
 
-  @Output() pageChanged: EventEmitter<any> = new EventEmitter<any>();
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() itemClicked: EventEmitter<any> = new EventEmitter<any>();
 
   get items() {
@@ -42,7 +39,9 @@ export class DataListComponent {
 
   private _items: any[] = [];
 
-  trackByFn(i: number, item: any): void {
+  constructor() {}
+
+  trackByFn<T>(i: number, item: T): string|number {
     return item[this.uniqueKey];
   }
 }
