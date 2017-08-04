@@ -1,5 +1,4 @@
-import {FormControl, FormGroup, ValidatorFn} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
+import {FormGroup, ValidatorFn} from '@angular/forms';
 
 export const FieldsEqualValidator: () => ValidatorFn = (): ValidatorFn => {
 
