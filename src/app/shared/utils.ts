@@ -1,20 +1,20 @@
 import * as _ from 'lodash';
 
-export function IsDefined(val: any): boolean {
+export function IsDefined<T>(val: T): boolean {
   return val !== undefined && val !== null;
 };
 
 export function GetUniqueID(): string {
 
-  let d = Date.now();
+  let d: number = Date.now();
 
   if (window.performance && typeof window.performance.now === 'function') {
     d += performance.now();
   }
 
-  const id = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+  const id: string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
 
-    const r = (d + Math.random() * 16) % 16 | 0;
+    const r: number = (d + Math.random() * 16) % 16 | 0;
 
     d = Math.floor(d / 16);
 
@@ -31,7 +31,7 @@ export function GetSortedList(list: any[], key: string): any[] {
   });
 };
 
-export function FindObjectByQuery(list: any[], key: string, query: string, isCaseSensitive = false): any {
+export function FindObjectByQuery<T>(list: T[], key: string, query: string, isCaseSensitive = false): T {
 
   return _.find(list, (item) => {
 
@@ -43,9 +43,9 @@ export function FindObjectByQuery(list: any[], key: string, query: string, isCas
   });
 };
 
-export function FindObjectIndex(list: any[], obj: any, key: string, isCaseSensitive = false): number {
+export function FindObjectIndex<O, K extends keyof O>(list: O[], obj: O, key: K, isCaseSensitive = false): number {
 
-  return _.findIndex(list, (item) => {
+  return _.findIndex(list, (item: O) => {
 
     if (!isCaseSensitive) {
       return String(obj[key]).toLowerCase() === String(item[key]).toLowerCase();

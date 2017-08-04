@@ -13,6 +13,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {FindObjectIndex, GetUniqueID} from '@shared/utils';
+import {IOption} from './shared/option.interface';
 
 @Component({
   selector: 'select-multiple',
@@ -57,14 +58,17 @@ export class SelectMultipleComponent implements ControlValueAccessor {
   constructor(private cd: ChangeDetectorRef) {}
 
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
-  writeValue(value: any) {
+  writeValue<T>(value: T[]) {
 
     if (value !== undefined && value !== null) {
       this.model = value;
@@ -88,7 +92,7 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     this.isOpen = false;
   }
 
-  selectOption(option: any): boolean {
+  selectOption<T extends IOption>(option: T): boolean {
 
     if (this.disabled) {
       return false;
@@ -102,7 +106,7 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     else if (!option.isChecked) {
       this.removeFromModel(existingModelIndex);
     }
-    // console.log(this.model)
+
     this.propagateChange(this.model);
   }
 
@@ -135,19 +139,19 @@ export class SelectMultipleComponent implements ControlValueAccessor {
     this.propagateChange(this.model);
   }
 
-  addToModel(option: any): void {
-    this.model = [...this.model, ...option];
+  addToModel<O>(option: O): void {
+    this.model = [...this.model, ...[option]];
   }
 
   removeFromModel(i: number): void {
     this.model = this.model.filter((item, index) => i !== index);
   }
 
-  isChecked(option: any): boolean {
+  isChecked<T>(option: T): boolean {
     return FindObjectIndex(this.model, option, this.uniqueKey) !== -1;
   }
 
-  trackByFn(index, item) {
+  trackByFn<T>(index: number, item: T): string|number {
     return item[this.uniqueKey];
   }
 }
