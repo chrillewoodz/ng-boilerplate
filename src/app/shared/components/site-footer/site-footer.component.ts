@@ -1,4 +1,8 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component
+} from '@angular/core';
+
 import {Router} from '@angular/router';
 
 @Component({
@@ -8,14 +12,7 @@ import {Router} from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SiteFooterComponent implements OnInit {
+export class SiteFooterComponent {
 
-  public currentYear: Date = new Date();
-
-  constructor(
-    private cd: ChangeDetectorRef,
-    private router: Router
-  ) {}
-
-  ngOnInit() {}
+  constructor() {}
 }
