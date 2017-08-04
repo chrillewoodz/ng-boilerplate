@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 
 import {IsDefined} from '@shared/utils';
 
-export const Email: ValidatorFn = (control: AbstractControl): {[key: string]: boolean} => {
+export const Email: (c: AbstractControl) => ValidatorFn = (control: AbstractControl): ValidatorFn => {
 
   if (IsDefined(Validators.required(control))) {
     return null;
@@ -11,5 +11,10 @@ export const Email: ValidatorFn = (control: AbstractControl): {[key: string]: bo
 
   const value: string = control.value;
 
-  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) ? null : {email: true};
+  return (c: AbstractControl): {[key: string]: boolean} => {
+
+    return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value) ? null : {
+      email: true
+    };
+  };
 };

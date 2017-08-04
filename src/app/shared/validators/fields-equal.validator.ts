@@ -1,11 +1,11 @@
 import {FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
-export const FieldsEqualValidator = (): ValidatorFn => {
+export const FieldsEqualValidator: () => ValidatorFn = (): ValidatorFn => {
 
   return (group: FormGroup): {[key: string]: boolean} => {
 
-    const fields: any[] = [];
+    const fields = [];
 
     for (const field in group.controls) {
 
@@ -14,11 +14,7 @@ export const FieldsEqualValidator = (): ValidatorFn => {
       }
     };
 
-    const result: any = fields.reduce((a, b) => {
-      return (a === b) ? a : NaN;
-    });
-
-    const valid: boolean = result === '' ? true : !!result;
+    const valid: boolean = fields.filter(field => !!field).length !== 0;
 
     return valid ? null : {
       fieldsEqual: true

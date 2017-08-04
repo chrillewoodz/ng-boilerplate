@@ -1,9 +1,9 @@
-import {FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {AbstractControl, FormGroup, ValidatorFn} from '@angular/forms';
 import {Observable} from 'rxjs/Observable';
 
-export const ConditionalValidator = (condition: boolean): ValidatorFn => {
+export const ConditionalValidator: (c: boolean) => ValidatorFn = (condition: boolean): ValidatorFn => {
 
-  return (control: FormControl): {[key: string]: boolean} => {
+  return (control: AbstractControl): {[key: string]: boolean} => {
 
     return condition === control.value ? null : {
       conditional: true
