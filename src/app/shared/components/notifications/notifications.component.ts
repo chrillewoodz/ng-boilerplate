@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, Input} from '@angular/core';
 
 import {NotificationsApi} from './shared/notifications-api.service';
+import {INotification} from './shared/notification.interface';
 
 @Component({
   moduleId: module.id,
@@ -14,13 +15,16 @@ export class NotificationsComponent implements OnInit {
   @Input() hideAfter = 3000;
 
   public isActive: boolean;
-  public notification: any;
+  public notification: INotification;
 
-  constructor(private cd: ChangeDetectorRef, private notificationsApi: NotificationsApi) {}
+  constructor(
+    private cd: ChangeDetectorRef,
+    private notificationsApi: NotificationsApi
+  ) {}
 
   ngOnInit() {
 
-    this.notificationsApi.notifications.subscribe((options: any) => {
+    this.notificationsApi.notifications.subscribe((options: INotification) => {
 
       this.notification = options;
       this.isActive = true;

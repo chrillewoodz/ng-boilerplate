@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 
+import {INotification} from './notification.interface';
+
 @Injectable()
 
 export class NotificationsApi {
@@ -9,7 +11,7 @@ export class NotificationsApi {
 
   constructor() {}
 
-  newNotification(options: any): void {
+  newNotification(options: INotification): void {
     this.notifications.next(options);
   }
 }
