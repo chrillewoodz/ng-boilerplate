@@ -1,4 +1,13 @@
-import {ChangeDetectorRef, ChangeDetectionStrategy, Component, ContentChild, Input, TemplateRef} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChild,
+  Input,
+  TemplateRef
+} from '@angular/core';
+
+import {IOption} from './shared/option.interface';
 
 @Component({
   selector: 'dropdown',
@@ -19,10 +28,6 @@ export class DropdownComponent {
 
   constructor(private cd: ChangeDetectorRef) {}
 
-  /* Toggles the dropdown
-   *
-   * @returns {Boolean} [false if the dropdown is disabled]
-   */
   toggle(): boolean {
 
     if (this.disabled) {
@@ -35,10 +40,6 @@ export class DropdownComponent {
     this.isOpen = !this.isOpen;
   }
 
-  /* Closes the dropdown
-   *
-   * @returns {Void}
-   */
   close(): void {
 
     this.isOpen = false;
@@ -46,14 +47,14 @@ export class DropdownComponent {
     this.cd.markForCheck();
   }
 
-  run(option: any): void {
+  run<O extends IOption>(option: O): void {
 
     if (option.clickHandler && typeof option.clickHandler === 'function') {
       option.clickHandler({emitted: this.dataToEmit, option: option});
     }
   }
 
-  trackByFn(i: number, item) {
+  trackByFn<T>(i: number, item: T): string|number {
     return item[this.uniqueKey];
   }
 }
