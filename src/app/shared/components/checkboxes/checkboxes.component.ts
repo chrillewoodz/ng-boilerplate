@@ -4,7 +4,6 @@ import {
   ContentChild,
   forwardRef,
   Input,
-  OnInit,
   TemplateRef
 } from '@angular/core';
 
@@ -23,7 +22,7 @@ import {IOption} from './shared/option.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class CheckboxesComponent implements ControlValueAccessor, OnInit {
+export class CheckboxesComponent implements ControlValueAccessor {
   @ContentChild(TemplateRef) templateRef: TemplateRef<any>;
   @Input() options: any[] = [];
   @Input() size = 'md';
@@ -53,8 +52,6 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
       this.model = value;
     }
   }
-
-  ngOnInit() {}
 
   selectOption<O extends IOption>(option: O): void {
 
