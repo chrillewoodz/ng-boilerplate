@@ -18,7 +18,7 @@ export class ClientStorage {
     }
   }
 
-  setItem(k: string, v: any): void {
+  setItem<T>(k: string, v: T): void {
 
     try {
       localStorage.setItem(k, JSON.stringify(v));
@@ -28,7 +28,7 @@ export class ClientStorage {
     }
   }
 
-  removeItem(k): void {
+  removeItem(k: string): void {
 
     try {
       localStorage.removeItem(k);

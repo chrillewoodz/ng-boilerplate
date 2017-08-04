@@ -4,7 +4,7 @@ import {Injectable} from '@angular/core';
 
 export class Cookies {
 
-  getItem(sKey): string {
+  getItem(sKey: string): string {
 
     if (!sKey) {
       return null;
