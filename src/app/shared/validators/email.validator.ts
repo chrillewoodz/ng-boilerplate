@@ -1,13 +1,6 @@
-import {AbstractControl, Validators, ValidatorFn} from '@angular/forms';
-import {Observable} from 'rxjs/Observable';
-
-import {IsDefined} from '@shared/utils';
+import {AbstractControl, ValidatorFn} from '@angular/forms';
 
 export const Email: (c: AbstractControl) => ValidatorFn = (control: AbstractControl): ValidatorFn => {
-
-  if (IsDefined(Validators.required(control))) {
-    return null;
-  }
 
   const value: string = control.value;
 
