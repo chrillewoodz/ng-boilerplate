@@ -1,18 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 
-class IModalParams {
-  isOpen?: boolean;
-  id: string;
-  template?: string;
-  action: string;
-}
+import {IModal} from './modal.interface';
 
 @Injectable()
 
 export class ModalApi {
 
-  private states = new BehaviorSubject<IModalParams>(null);
+  private states = new BehaviorSubject<IModal>(null);
 
   public states$ = this.states.asObservable();
 
@@ -20,7 +15,7 @@ export class ModalApi {
 
   open(id: string, template?: string): void {
 
-    const args: IModalParams = {
+    const args: IModal = {
       isOpen: true,
       id: id,
       template: template,
@@ -32,7 +27,7 @@ export class ModalApi {
 
   close(id: string): void {
 
-    const args: IModalParams = {
+    const args: IModal = {
       isOpen: false,
       id: id,
       action: 'close'
