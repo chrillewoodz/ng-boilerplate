@@ -11,6 +11,7 @@ import {
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 import {FindObjectIndex} from '@shared/utils';
+import {IOption} from './shared/option.interface';
 
 @Component({
   selector: 'checkboxes',
@@ -36,14 +37,17 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
   constructor() {}
 
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
-  writeValue(value: any) {
+  writeValue<T>(value: T[]) {
 
     if (value !== undefined && value !== null) {
       this.model = value;
@@ -52,11 +56,11 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
 
   ngOnInit() {}
 
-  selectOption(option) {
+  selectOption<O extends IOption>(option: O): void {
 
     const i: number = FindObjectIndex(this.model, option, this.uniqueKey);
 
-    if (i === -1) {
+    if (i === -1 && option.isChecked) {
       this.model.push(option);
     }
     else {
@@ -66,7 +70,7 @@ export class CheckboxesComponent implements ControlValueAccessor, OnInit {
     this.propagateChange(this.model);
   }
 
-  trackByFn(i: number, item) {
+  trackByFn<T>(i: number, item: T): string|number {
     return item[this.uniqueKey];
   }
 }
