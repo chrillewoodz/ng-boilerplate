@@ -14,7 +14,7 @@ import {
 
 export class ClickOutsideDirective {
   @Input() exceptions: QueryList<HTMLElement>;
-  @Output() clickOutside: EventEmitter<any> = new EventEmitter();
+  @Output() clickOutside: EventEmitter<any> = new EventEmitter<any>();
 
   @HostListener('document:click', ['$event'])
   documentClick(e: MouseEvent) {
@@ -56,9 +56,9 @@ export class ClickOutsideDirective {
 
   isExceptionClicked(e: MouseEvent): boolean {
 
-    return this.exceptions.some((exception: any) => {
+    return this.exceptions.some((exception) => {
 
-      if (e.target === exception || exception.contains(e.target)) {
+      if (e.target === exception || exception.contains(e.target as HTMLElement)) {
         return true;
       }
     });
