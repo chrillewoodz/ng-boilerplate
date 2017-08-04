@@ -1,7 +1,15 @@
 # Usage
 
+With `ngModel`, no need for `filesSelected` listener here since all the files will be bound to the `ngModel` directive. However, if you want to pass some additional information whenever you select files or to know which files are existing/new you can use `filesSelected` as well.
+
 ```
-<file-uploader [(ngModel)]="chosenFiles" (filesSelected)="uploadFiles($event)" [multiple]="true" btnClasses="btn-md btn-primary"></file-uploader>
+<file-uploader [(ngModel)]="chosenFiles" (filesSelected)="uploadFiles($event)" [multiple]="true" btnClasses="btn btn-md btn-primary"></file-uploader>
+```
+
+Without `ngModel`, use `filesSelected` to get the selected files:
+
+```
+<file-uploader (filesSelected)="uploadFiles($event)" [multiple]="true" btnClasses="btn btn-md btn-primary"></file-uploader>
 ```
 
 # Inputs
@@ -18,21 +26,15 @@ Decides if more than one file can be chosen
 - Allowed values: `true`, `false`
 - Default: `false`
 
-###### {number} max
-The maximum number of files that can be chosen
-
-- Allowed values: Any number higher than `0` 
-- Default: `null`
-
 ###### {string} btnClasses
-A space separated string of classes which will be applied to the button, `btn` is already applied so no need to include it
+A space separated string of classes which will be applied to the button.
 
 - Allowed values: Any string of class names
 - Default: `''`
 
 # Outputs
 
-###### {EventEmitter<any>} filesSelected
+###### {EventEmitter<IData>} filesSelected
 Emits when the last file has been read by `FileReader`
 
 `$event`:

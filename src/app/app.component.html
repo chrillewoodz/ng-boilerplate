@@ -1,3 +1,5 @@
 <div class="app-content">
+  <file-uploader [(ngModel)]="test" [multiple]="true" (filesSelected)="upload($event)">Hello</file-uploader>
+  <pre>{{test | json}}</pre>
   <router-outlet></router-outlet> 
 </div>

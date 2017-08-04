@@ -1,5 +1,16 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, forwardRef, Input, Output} from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  Output
+} from '@angular/core';
+
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+
+import {IData} from './shared/data.interface';
+import {IFile} from './shared/file.interface';
 
 @Component({
   selector: 'file-uploader',
@@ -18,76 +29,76 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 export class FileUploaderComponent implements ControlValueAccessor {
   @Input() info = null;
   @Input() multiple = false;
-  @Input() max = null;
   @Input() btnClasses = '';
-  @Output() filesSelected: EventEmitter<any> = new EventEmitter<any>();
+  @Output() filesSelected: EventEmitter<IData> = new EventEmitter<IData>();
 
-  public model: any[] = [];
+  set model(model) {
+    this._model = model;
+  }
+
+  get model() {
+    return this._model;
+  }
+
+  private _model: IFile[] = [];
 
   constructor() {}
 
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
-  writeValue(value: any) {
+  writeValue<T extends IFile>(value: T[]) {
 
-    if (value !== undefined) {
+    if (value !== undefined && value !== null) {
       this.model = value;
     }
   }
 
-  delete(): void {
-    this.model = [];
-    this.propagateChange(this.model);
-  }
-
-  /* Opens the file selection dialog
-   *
-   * @param {HTMLElement} input [the file input to activate]
-   * @returns {Void}
-   */
   toggleFileInput(input: HTMLElement): void {
     input.click();
   }
 
-  /* Reads files added from a file input
-   *
-   * @param {Any} e [the event of the file adding, contains the files to be read]
-   * @returns {Void}
-   */
-   readFiles(e: any): void {
+  readFiles(e): void {
 
-     // Don't start at 0 since we will be counting length of array which doesn't start at 0
-     let completed = 1;
+    // Don't start at 0 since we will be counting length of array which doesn't start at 0
+    let completed = 1;
 
-     const newFiles: any[] = [];
+    const newFiles: IFile[] = [];
 
-     for (const file of e.target.files) {
+    for (const file of e.target.files) {
 
-       const reader = new FileReader();
+      const reader = new FileReader();
 
-       reader.onload = (loaded: any) => {
+      reader.onload = (loaded: any) => {
 
-         newFiles.push({src: loaded.target.result, type: file.type});
+        newFiles.push({src: loaded.target.result, type: file.type});
 
-         if (e.target.files.length === completed) {
+        if (e.target.files.length === completed) {
 
-           this.filesSelected.emit({
-             existingFiles: this.model,
-             newFiles: this.max === null ? newFiles : newFiles.slice(0, this.max),
-             info: this.info
-           });
-         }
+          // Emit this before the model is set so that we get the previous existing files
+          this.filesSelected.emit({
+            existingFiles: this.model,
+            newFiles: newFiles,
+            info: this.info
+          });
 
-         completed++;
-       };
+          this.model = [...this.model, ...newFiles];
 
-       reader.readAsDataURL(file);
-     };
-   }
+          this.propagateChange(this.model);
+        }
+
+        completed++;
+      };
+
+      reader.readAsDataURL(file);
+    };
+  }
 }
