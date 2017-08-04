@@ -25,9 +25,8 @@ import {CustomValidators} from '@validators/custom-validators';
 export class SwitchComponent implements ControlValueAccessor {
   @Input() disabled = false;
 
-  public checked: boolean;
-
   public id: string = GetUniqueID();
+  public checked: boolean;
 
   constructor() {}
 
@@ -42,7 +41,7 @@ export class SwitchComponent implements ControlValueAccessor {
     this.propagateTouched = fn;
   }
 
-  writeValue(value) {
+  writeValue(value: boolean) {
     this.checked = value;
   }
 }
