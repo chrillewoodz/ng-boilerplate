@@ -1,5 +1,5 @@
 import {Directive, HostBinding, Input} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 
 @Directive({
   selector: '[urlToBackground]'
@@ -17,7 +17,7 @@ export class UrlToBackgroundDirective {
   private _backgroundUrl: string;
 
   @HostBinding('style.background-image')
-  background: any;
+  background: SafeStyle|string;
 
   constructor(private sanitizer: DomSanitizer) {}
 
