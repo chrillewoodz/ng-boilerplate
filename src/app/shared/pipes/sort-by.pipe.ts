@@ -1,13 +1,17 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import * as _ from 'lodash';
 
+class IArgs {
+  toLowerCase: () => string;
+}
+
 @Pipe({
   name: 'sortBy'
 })
 
 export class SortByPipe implements PipeTransform {
 
-  transform(items: any, args: any[]) {
+  transform<I, A extends IArgs>(items: I[], args: A[]) {
 
     const copy = items.slice();
     const property = args[0];
