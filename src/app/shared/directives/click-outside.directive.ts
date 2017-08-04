@@ -1,21 +1,12 @@
 import {
-  AfterContentInit,
-  ContentChildren,
   Directive,
   HostListener,
   Input,
   Output,
-  OnInit,
   ElementRef,
   EventEmitter,
-  OnDestroy,
-  Renderer,
   QueryList
 } from '@angular/core';
-
-import {Subject} from 'rxjs/Subject';
-import {Subscription} from 'rxjs/Subscription';
-import 'rxjs/add/operator/debounceTime';
 
 @Directive({
   selector: '[clickOutside]'
@@ -32,7 +23,8 @@ export class ClickOutsideDirective {
 
     if (!this.exceptions) {
 
-      // If host element or any of its children isn't clicked while there are no exceptions defined, run the callback
+      // If host element or any of its children isn't clicked
+      // while there are no exceptions defined, run the callback
       if (!this.isHostClicked(e)) {
         this.clickOutside.emit();
       }
