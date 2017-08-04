@@ -4,10 +4,8 @@ import {
   Component,
   ContentChild,
   forwardRef,
+  HostListener,
   Input,
-  OnDestroy,
-  OnInit,
-  Renderer2,
   TemplateRef
 } from '@angular/core';
 
@@ -30,9 +28,10 @@ import {GetUniqueID} from '@shared/utils';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 
-export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit {
-  @ContentChild('optionRef', {read: TemplateRef}) optionRef: TemplateRef<any>;
+export class SelectComponent implements ControlValueAccessor {
+  @ContentChild(TemplateRef) optionRef: TemplateRef<any>;
   @Input() options: any[] = [];
+  @Input() customModel: any;
   @Input() uniqueKey = 'id';
   @Input() disabled = false;
   @Input() optionsLabel = 'label';
@@ -43,86 +42,88 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
   public isOpen = false;
   public isDirty: boolean;
 
-  // Event handlers
-  private documentKeyDownHandler: any;
-  private documentKeyUpHandler: any;
-
   private _model: any;
+  private _currentModel: string;
+  private keys: number[] = [38, 40];
 
   set model(val) {
     this._model = val;
+    this.currentModel = this.customModel || (val ? val[this.optionsLabel] : '');
   }
 
   get model() {
     return this._model;
   }
 
-  constructor(private cd: ChangeDetectorRef, private renderer: Renderer2) {}
+  set currentModel(val) {
+    this._currentModel = val;
+  }
+
+  get currentModel() {
+    return this._currentModel;
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  keyDown(e: KeyboardEvent) {
+
+    if (this.isOpen && this.keys.indexOf(e.keyCode || e.which) !== -1) {
+
+      e.preventDefault();
+
+      return false;
+    }
+  }
+
+  @HostListener('document:keyup', ['$event'])
+  keyUp(e: KeyboardEvent) {
+
+    if (this.isOpen && this.keys.indexOf(e.keyCode || e.which) !== -1) {
+
+      this.options = SelectUtils.getMarkedList({
+        list: this.options,
+        current: this.model,
+        direction: (e.keyCode || e.which) === 38 ? 'up' : 'down',
+        uniqueKey: this.uniqueKey
+      });
+    }
+    else if (this.isOpen && (e.keyCode || e.which) === 13) {
+
+      const currentlyMarked = SelectUtils.getCurrentlyMarked(this.options);
+
+      if (currentlyMarked) {
+
+        this.model = currentlyMarked;
+
+        SelectUtils.resetMarkedList(this.options);
+
+        this.close();
+      }
+    }
+
+    // Notifying angular about the changes to the options,
+    // this is crucial as the view won't be updated without it
+    this.cd.markForCheck();
+  };
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   propagateChange = (_: any) => {};
+  propagateTouched = () => {};
 
-  registerOnChange(fn: () => any) {
+  registerOnChange(fn: (_: any) => {}) {
     this.propagateChange = fn;
   }
 
-  registerOnTouched() {}
+  registerOnTouched(fn: () => {}) {
+    this.propagateTouched = fn;
+  }
 
-  writeValue(value: any) {
+  writeValue<T>(value: T) {
 
     if (value !== undefined) {
       this.model = value;
       this.cd.markForCheck();
     }
-  }
-
-  ngOnInit() {
-
-    const keys = [38, 40];
-
-    // Prevents the window from scrolling when we scroll inside the select
-    this.documentKeyDownHandler = this.renderer.listen('document', 'keydown', (e: any) => {
-
-      if (this.isOpen && keys.indexOf(e.keyCode || e.which) !== -1) {
-
-        e.preventDefault();
-
-        return false;
-      }
-    });
-
-    this.documentKeyUpHandler = this.renderer.listen('document', 'keyup', (e: any) => {
-
-      if (this.isOpen && keys.indexOf(e.keyCode || e.which) !== -1) {
-
-        this.options = SelectUtils.getMarkedList({
-          list: this.options,
-          current: this.model,
-          direction: (e.keyCode || e.which) === 38 ? 'up' : 'down',
-          uniqueKey: this.uniqueKey
-        });
-      }
-      else if (this.isOpen && (e.keyCode || e.which) === 13) {
-
-        const currentlyMarked = SelectUtils.getCurrentlyMarked(this.options);
-
-        if (currentlyMarked) {
-
-          this.model = currentlyMarked;
-
-          SelectUtils.resetMarkedList(this.options);
-
-          this.close();
-        }
-      }
-
-      // Notifying angular about the changes to the options, this is crucial as the view won't be updated without it
-      this.cd.markForCheck();
-    });
-  }
-
-  ngOnDestroy() {
-    this.documentKeyDownHandler();
-    this.documentKeyUpHandler();
   }
 
   toggle(): boolean {
@@ -144,7 +145,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
     SelectUtils.resetMarkedList(this.options);
   }
 
-  selectOption(option: any): boolean {
+  selectOption<O>(option: O): boolean {
 
     if (this.disabled) {
       return false;
@@ -157,7 +158,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy, OnInit 
     this.propagateChange(this.model);
   }
 
-  isSelected(option: any): boolean {
+  isSelected<O>(option: O): boolean {
 
     if (this.model) {
       return option[this.uniqueKey] === this.model[this.uniqueKey];

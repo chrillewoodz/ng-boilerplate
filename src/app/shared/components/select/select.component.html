@@ -1,7 +1,7 @@
 <div #select class="select-control" [ngClass]="{open: isOpen, disabled: disabled, 'ng-dirty': isDirty}" isTouched (clickOutside)="close()" [exceptions]="[exception]">
   <div #exception>
     <label class="label select-label" *ngIf="label" [for]="selectId">{{label}}</label>
-    <input class="input" [id]="selectId" [ngModel]="model ? model[optionsLabel] : ''" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
+    <input class="input" [id]="selectId" [ngModel]="currentModel" [ngModelOptions]="{standalone: true}" (click)="toggle()" (keydown.enter)="$event.preventDefault()" readonly [disabled]="disabled" [placeholder]="placeholder">
   </div>
   <ul class="select-options">
     <ng-container *ngFor="let option of options">
